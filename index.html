@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Criador de landing pages de alta conversão. Veja exemplos por segmento e peça a sua pelo WhatsApp." />
+  <title>Landing Pages de Alta Conversão | Portfólio</title>
+
+  <style>
+    :root{
+      --bg: #0b0f17;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --line: rgba(255,255,255,.10);
+      --accent: #7c9cff;
+      --accent2: #6ee7b7;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 24px;
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 80% -10%, rgba(124,156,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 10% 10%, rgba(110,231,183,.14), transparent 55%),
+        radial-gradient(800px 500px at 70% 110%, rgba(124,156,255,.14), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    .wrap{ width:min(1100px, 92vw); margin:0 auto; padding: 20px 0 70px; }
+
+    /* Top bar */
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      padding: 14px 0 8px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(124,156,255,.95), rgba(110,231,183,.85));
+      box-shadow: 0 10px 35px rgba(124,156,255,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.55), transparent 55%);
+      transform: rotate(18deg);
+    }
+    .nav{
+      display:flex; align-items:center; gap:10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .chip{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: transform .15s ease, background .15s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 16px;
+      padding: 14px 0 10px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .heroCard{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute; inset:-60%;
+      background: radial-gradient(circle at 20% 30%, rgba(124,156,255,.20), transparent 55%);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      color: rgba(255,255,255,.86);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .35px;
+      text-transform: uppercase;
+      background: rgba(124,156,255,.10);
+      border: 1px solid rgba(124,156,255,.22);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    .kickerDot{
+      width:8px;height:8px;border-radius:50%;
+      background: var(--accent2);
+      box-shadow: 0 0 0 4px rgba(110,231,183,.12);
+    }
+    h1{
+      margin: 12px 0 8px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.6px;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: clamp(14px, 1.6vw, 17px);
+      line-height: 1.4;
+      max-width: 62ch;
+    }
+
+    .ctaRow{
+      display:flex; gap:10px; flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      font-weight: 800;
+      font-size: 14px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.14); }
+    .btnPrimary{
+      background: linear-gradient(135deg, rgba(124,156,255,.95), rgba(110,231,183,.75));
+      border-color: transparent;
+      color: #061018;
+    }
+    .btnPrimary:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .btnSmall{ padding: 10px 12px; border-radius: 999px; font-size: 13px; font-weight: 750; }
+
+    .heroSide{
+      display:grid;
+      gap: 10px;
+      align-content: start;
+    }
+    .mini{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .miniTitle{ font-weight: 900; margin:0 0 6px; font-size: 14px; }
+    .miniText{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+
+    /* Sections */
+    .section{
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius2);
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.22);
+    }
+    .sectionHeader{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap: 10px; flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .hint{ margin:0; color: var(--muted); font-size: 13px; }
+
+    /* Benefits */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+    .card{
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-60%;
+      background: radial-gradient(circle at 30% 20%, rgba(124,156,255,.14), transparent 55%);
+      transform: rotate(10deg);
+      pointer-events:none;
+    }
+    .cardTop{
+      display:flex; align-items:center; gap:10px; margin-bottom: 8px;
+    }
+    .icon{
+      width:34px; height:34px; border-radius: 12px;
+      display:grid; place-items:center;
+      background: rgba(124,156,255,.14);
+      border: 1px solid rgba(124,156,255,.22);
+      flex: 0 0 auto;
+    }
+    .cardTitle{ margin:0; font-weight: 900; font-size: 14px; }
+    .cardText{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+
+    /* Portfolio */
+    .portfolioGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 900px){
+      .portfolioGrid{ grid-template-columns: 1fr; }
+    }
+    .pItem{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 14px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .pItem:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
+    }
+    .pBadge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .pName{ margin: 10px 0 6px; font-weight: 950; font-size: 15px; letter-spacing: -.2px; }
+    .pDesc{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .pArrow{
+      position:absolute;
+      right: 14px; top: 14px;
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--line);
+      transform: translateZ(0);
+    }
+
+    /* Proof */
+    .testiGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 900px){
+      .testiGrid{ grid-template-columns: 1fr; }
+    }
+    .quote{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .quote p{ margin:0; color: rgba(255,255,255,.82); font-size: 13px; line-height: 1.45; }
+    .quote .who{ margin-top: 10px; color: var(--muted); font-weight: 800; font-size: 12px; }
+
+    /* Bottom CTA */
+    .ctaBox{
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 12px; flex-wrap: wrap;
+      padding: 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(110,231,183,.20);
+      background: linear-gradient(180deg, rgba(110,231,183,.10), rgba(124,156,255,.08));
+    }
+    .ctaBox h3{ margin:0; font-size: 16px; font-weight: 950; letter-spacing: -.2px; }
+    .ctaBox p{ margin: 4px 0 0; color: rgba(255,255,255,.80); font-size: 13px; line-height: 1.35; max-width: 66ch; }
+
+    /* Floating WhatsApp */
+    .waFloat{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 50;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, .18);
+      border: 1px solid rgba(16, 185, 129, .35);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .waFloat:hover{ transform: translateY(-2px); filter: brightness(1.03); }
+    .waDot{
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 6px rgba(16,185,129,.18);
+    }
+    .waText{ font-weight: 950; font-size: 13px; color: rgba(255,255,255,.92); }
+
+    /* Animations (JS adds these) */
+    .reveal{
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Small helper */
+    .muted{ color: var(--muted); }
+    .tiny{ font-size: 12px; }
+    .divider{ height:1px; background: var(--line); margin: 12px 0; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- Top bar -->
+    <div class="topbar reveal">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:14px; font-weight:950;">Criador de Landing Pages</div>
+          <div class="tiny muted">Portfólio • Alta conversão • WhatsApp</div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a class="chip" href="#portfolio">Ver exemplos</a>
+        <a class="chip" href="#beneficios">Benefícios</a>
+        <a class="chip" href="#provas">Provas</a>
+        <a class="chip" href="#contato">Orçamento</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="heroCard reveal">
+        <div class="kicker">
+          <span class="kickerDot"></span>
+          Landing pages prontas para vender
+        </div>
+
+        <h1>Criador de landing pages de alta conversão</h1>
+        <p class="sub">
+          Páginas modernas, rápidas e focadas em cliques no WhatsApp — feitas sob medida para o seu negócio.
+          Veja abaixo exemplos por segmento e peça a sua.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn btnPrimary" id="ctaWhatsappTop" href="#" target="_blank" rel="noopener">
+            <span>Quero minha landing page</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="btn" href="#portfolio">
+            <span>Ver portfólio</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+          <button class="btn btnSmall" id="copyLinkBtn" type="button">Copiar link do portfólio</button>
+        </div>
+
+        <div class="divider"></div>
+        <div class="tiny muted">
+          ⚡ Mobile-first • 🔒 Visual profissional • 🎯 CTA estratégico • 🚀 Pronto para anúncios
+        </div>
+      </div>
+
+      <div class="heroSide">
+        <div class="mini reveal">
+          <p class="miniTitle">Entrega rápida</p>
+          <p class="miniText">Você recebe uma página pronta para converter e com botão direto para WhatsApp.</p>
+        </div>
+        <div class="mini reveal">
+          <p class="miniTitle">Foco em resultado</p>
+          <p class="miniText">Uma landing page tem um único objetivo: transformar visita em mensagem.</p>
+        </div>
+        <div class="mini reveal">
+          <p class="miniTitle">Perfeita para tráfego</p>
+          <p class="miniText">Ideal para anúncios, link na bio e campanhas direcionadas por segmento.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits -->
+    <section class="section reveal" id="beneficios">
+      <div class="sectionHeader">
+        <div>
+          <h2 class="h2">Benefícios que fazem a página converter</h2>
+          <p class="hint">Sem espaços vazios demais — design limpo, mas com densidade e leitura rápida.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card reveal">
+          <div class="cardTop">
+            <div class="icon" aria-hidden="true">⚡</div>
+            <p class="cardTitle">Carregamento rápido</p>
+          </div>
+          <p class="cardText">Página leve, objetiva e pronta para celular — menos abandono, mais cliques.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="cardTop">
+            <div class="icon" aria-hidden="true">🎯</div>
+            <p class="cardTitle">CTA inteligente</p>
+          </div>
+          <p class="cardText">Botão de WhatsApp estrategicamente posicionado e repetido nos pontos certos.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="cardTop">
+            <div class="icon" aria-hidden="true">🧩</div>
+            <p class="cardTitle">Estrutura persuasiva</p>
+          </div>
+          <p class="cardText">Headline, benefícios, prova social e oferta clara — sem enrolação.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="section reveal" id="portfolio">
+      <div class="sectionHeader">
+        <div>
+          <h2 class="h2">Portfólio por segmento</h2>
+          <p class="hint">Clique para abrir a landing page. (Todas hospedadas no GitHub Pages.)</p>
+        </div>
+      </div>
+
+      <div class="portfolioGrid">
+        <a class="pItem reveal" href="./barbearia.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Serviços</span>
+          <div class="pName">Barbearia</div>
+          <p class="pDesc">Agenda rápida, prova social e CTA direto no WhatsApp.</p>
+        </a>
+
+        <a class="pItem reveal" href="./chocolateria.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Produtos</span>
+          <div class="pName">Chocolateria</div>
+          <p class="pDesc">Destaque de combos, gatilhos de compra e pedido imediato.</p>
+        </a>
+
+        <a class="pItem reveal" href="./cilios.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Beleza</span>
+          <div class="pName">Cílios</div>
+          <p class="pDesc">Oferta clara, benefícios em cards e agendamento no WhatsApp.</p>
+        </a>
+
+        <a class="pItem reveal" href="./lanchonete.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Food</span>
+          <div class="pName">Lanchonete</div>
+          <p class="pDesc">Pedidos rápidos, destaque de itens e CTA forte para conversão.</p>
+        </a>
+
+        <a class="pItem reveal" href="./marcenaria.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Serviços</span>
+          <div class="pName">Marcenaria</div>
+          <p class="pDesc">Portfólio, autoridade e captação de orçamento em 1 clique.</p>
+        </a>
+
+        <a class="pItem reveal" href="./oculos.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Varejo</span>
+          <div class="pName">Óculos</div>
+          <p class="pDesc">Destaque de vantagens e direcionamento para atendimento rápido.</p>
+        </a>
+
+        <a class="pItem reveal" href="./prestador.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Serviços</span>
+          <div class="pName">Prestador</div>
+          <p class="pDesc">Proposta direta, prova social e CTA para fechar orçamento.</p>
+        </a>
+
+        <a class="pItem reveal" href="./restaurante.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Food</span>
+          <div class="pName">Restaurante</div>
+          <p class="pDesc">Reservas/pedidos e apresentação completa com alta conversão.</p>
+        </a>
+
+        <a class="pItem reveal" href="./revendacelular.html" target="_blank" rel="noopener">
+          <div class="pArrow" aria-hidden="true">↗</div>
+          <span class="pBadge">Varejo</span>
+          <div class="pName">Revenda de Celular</div>
+          <p class="pDesc">Oferta clara, benefícios e atendimento imediato no WhatsApp.</p>
+        </a>
+      </div>
+
+      <p class="tiny muted" style="margin:12px 0 0;">
+        Dica: quando você fechar com um cliente, você pode clonar um modelo e adaptar em minutos.
+      </p>
+    </section>
+
+    <!-- Proof -->
+    <section class="section reveal" id="provas">
+      <div class="sectionHeader">
+        <div>
+          <h2 class="h2">Prova social</h2>
+          <p class="hint">Exemplos (você pode trocar por depoimentos reais quando tiver).</p>
+        </div>
+      </div>
+
+      <div class="testiGrid">
+        <div class="quote reveal">
+          <p>“Depois da landing page, as mensagens no WhatsApp ficaram muito mais qualificadas. Melhorou demais a conversão.”</p>
+          <div class="who">Cliente • Segmento de serviços</div>
+        </div>
+        <div class="quote reveal">
+          <p>“A página ficou rápida e bonita no celular. Em campanha, fez muita diferença no custo por mensagem.”</p>
+          <div class="who">Cliente • Negócio local</div>
+        </div>
+        <div class="quote reveal">
+          <p>“Curto, direto e com CTA no lugar certo. Era exatamente o que eu precisava para começar a anunciar.”</p>
+          <div class="who">Cliente • Varejo</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section reveal" id="contato">
+      <div class="ctaBox">
+        <div>
+          <h3>Quer uma landing page pronta para converter?</h3>
+          <p>Me chama no WhatsApp e me diga o seu segmento. Eu adapto um modelo e deixo a página no ar rapidinho.</p>
+          <p class="tiny muted" style="margin-top:8px;">✅ Headline • Benefícios • Provas • CTA forte • Mobile-first</p>
+        </div>
+        <a class="btn btnPrimary" id="ctaWhatsappBottom" href="#" target="_blank" rel="noopener">
+          <span>Falar no WhatsApp</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <p class="tiny muted" style="margin:14px 0 0;">
+      © <span id="year"></span> • Portfólio de landing pages • Feito para conversão
+    </p>
+  </div>
+
+  <a class="waFloat" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <span class="waDot" aria-hidden="true"></span>
+    <span class="waText">WhatsApp</span>
+  </a>
+
+  <script>
+    // ✅ CONFIG: coloque seu WhatsApp aqui (com DDI e DDD, sem +, sem espaços)
+    const WHATSAPP_NUMBER = "5511999999999"; // <-- troque
+    const DEFAULT_MSG = "Olá! Vi seu portfólio de landing pages e quero uma página para meu negócio. Podemos falar?";
+
+    function buildWhatsAppLink(number, message){
+      const text = encodeURIComponent(message);
+      return `https://wa.me/${number}?text=${text}`;
+    }
+
+    const waLink = buildWhatsAppLink(WHATSAPP_NUMBER, DEFAULT_MSG);
+    document.getElementById("ctaWhatsappTop").href = waLink;
+    document.getElementById("ctaWhatsappBottom").href = waLink;
+    document.getElementById("waFloat").href = waLink;
+
+    // Ano automático
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Copiar link do portfólio
+    document.getElementById("copyLinkBtn").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(window.location.href);
+        const btn = document.getElementById("copyLinkBtn");
+        const old = btn.textContent;
+        btn.textContent = "Link copiado ✅";
+        setTimeout(()=> btn.textContent = old, 1200);
+      }catch(e){
+        alert("Não consegui copiar automaticamente. Copie manualmente o link do navegador.");
+      }
+    });
+
+    // ✅ Animações JS (Intersection Observer)
+    const items = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    items.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
