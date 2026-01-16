@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanchonete do Bairro - O Melhor Sabor</title>
+    <link rel="icon" href="lanchonete.png" type="image/png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET E VARIÁVEIS --- */
+        :root {
+            --primary-color: #e63946; /* Vermelho Apetite */
+            --secondary-color: #f1faee;
+            --accent-color: #ffb703; /* Amarelo Mostarda */
+            --text-dark: #1d3557;
+            --text-light: #f1faee;
+            --bg-light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- UTILITÁRIOS --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #c1121f;
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            border: none;
+        }
+        
+        .btn-whatsapp:hover {
+            background-color: #1ebc57;
+        }
+
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;       /* Deixa um ao lado do outro */
+            align-items: center; /* Centraliza verticalmente */
+            gap: 12px;           /* Espaço entre a imagem e o texto */
+        }
+
+        .logo img {
+            max-height: 50px;    /* Altura da imagem */
+            width: auto;
+        }
+
+        .logo span {
+            font-size: 1.2rem;   /* Tamanho da letra */
+            font-weight: 700;    /* Negrito */
+            color: var(--primary-color); /* Cor vermelha da marca */
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.2;    /* Melhora o espaçamento se quebrar linha */
+        }
+
+        @media (max-width: 480px) {
+            .logo span {
+                font-size: 1rem;
+            }
+            .logo img {
+                max-height: 40px;
+            }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh; 
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- BENEFÍCIOS --- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- CARDÁPIO (MENU) --- */
+        .menu-section {
+            background-color: white;
+            padding: 80px 0;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .menu-item {
+            background: var(--bg-light);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .menu-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .menu-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .menu-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .menu-desc {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1; 
+        }
+
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* --- CARRO CHEFE (Highlight) --- */
+        .highlight {
+            background-color: var(--secondary-color);
+        }
+
+        .highlight-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .highlight-img img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .highlight-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* --- PROVA SOCIAL --- */
+        .testimonial {
+            background-color: white;
+            padding: 60px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .quote-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Alinha o nome no final */
+            height: 100%; /* Para todos terem a mesma altura */
+        }
+
+        .stars {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .quote-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #2b2d42;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+
+        /* --- BOTÃO FLUTUANTE WHATSAPP --- */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 2000;
+            transition: all 0.3s;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2rem; }
+            .hero { height: 70vh; }
+            .highlight-container { flex-direction: column; }
+            .highlight-img img { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+            <header>
+                <div class="container">
+                    <nav>
+                        <div class="logo">
+                            <img src="lanchonete.png" alt="Logo Lanchonete">
+                            <span>Lanchonete do Bairro</span>
+                        </div>
+                        
+                        <a href="#" onclick="abrirWhatsApp()" class="btn btn-primary btn-sm">Pedir Agora</a>
+                    </nav>
+                </div>
+            </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Mate Sua Fome com o Lanche Mais Saboroso do Bairro</h1>
+            <p>Hambúrgueres artesanais, cachorros-quentes prensados e entrega recorde. Chega quentinho na sua porta.</p>
+            <a href="#" onclick="abrirWhatsApp()" class="btn btn-primary">Quero Fazer Meu Pedido</a>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Por que pedir com a gente?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🥩</span>
+                    <h3>Artesanal de Verdade</h3>
+                    <p>Carne fresca moída todo dia. Nada de hambúrguer congelado industrializado.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🚀</span>
+                    <h3>Entrega Flash</h3>
+                    <p>Conhecemos cada rua do bairro. Seu lanche chega rápido e sem desculpas.</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🔥</span>
+                    <h3>Chega Quente</h3>
+                    <p>Embalagens térmicas especiais que mantém o queijo derretido até a sua casa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-section">
+        <div class="container">
+            <h2 style="text-align: center;">Escolha o Seu Preferido</h2>
+            <p style="text-align: center; color: #666;">Ingredientes selecionados e sabor inigualável.</p>
+            
+            <div class="menu-grid">
+                
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Hambúrguer Clássico" class="menu-img">
+                    <div class="menu-content">
+                        <h3 class="menu-title">Clássico da Casa</h3>
+                        <p class="menu-desc">Pão brioche selado na manteiga, burger de 160g, queijo prato derretido, alface americana, tomate e maionese verde.</p>
+                        <div class="menu-footer">
+                            <span class="price">R$ 24,90</span>
+                            <a href="#" onclick="abrirWhatsApp('Quero pedir o Clássico da Casa')" class="btn btn-primary btn-sm">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Duplo Bacon" class="menu-img">
+                    <div class="menu-content">
+                        <h3 class="menu-title">Monster Bacon</h3>
+                        <p class="menu-desc">Para quem tem fome! Dois hambúrgueres de 150g, muito bacon crocante, dobro de cheddar, cebola roxa e molho barbecue.</p>
+                        <div class="menu-footer">
+                            <span class="price">R$ 34,90</span>
+                            <a href="#" onclick="abrirWhatsApp('Quero pedir o Monster Bacon')" class="btn btn-primary btn-sm">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+
+<div class="menu-item">
+                    <img src="https://www.francoislambert.one/cdn/shop/articles/mac_poulet_corn_flakes.webp?v=1723557298" alt="Frango Crispy" class="menu-img">
+                    <div class="menu-content">
+                        <h3 class="menu-title">Chicken Crispy</h3>
+                        <p class="menu-desc">Filé de sobrecoxa empanada na panko (super crocante), queijo, alface, picles e molho especial de mostarda e mel.</p>
+                        <div class="menu-footer">
+                            <span class="price">R$ 26,90</span>
+                            <a href="#" onclick="abrirWhatsApp('Quero pedir o Chicken Crispy')" class="btn btn-primary btn-sm">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="highlight">
+        <div class="container highlight-container">
+            <div class="highlight-img">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Combo Família">
+            </div>
+            <div class="highlight-text">
+                <h2>Combo Família</h2>
+                <p>O fim de semana pede! Leve 3 Clássicos da Casa + 1 Batata Grande com Cheddar e Bacon + Refrigerante de 2L. O melhor custo benefício para dividir.</p>
+                <br>
+                <a href="#" onclick="abrirWhatsApp('Quero saber mais sobre o Combo Família')" class="btn btn-primary btn-whatsapp">Pedir Combo</a>
+            </div>
+        </div>
+    </section>
+
+<section class="testimonial">
+        <div class="container">
+            <h2 style="text-align: center;">O que os vizinhos estão falando</h2>
+            
+            <div class="testimonial-grid">
+                
+                <div class="quote-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="quote-text">"Sempre peço nas sextas-feiras. O X-Salada é gigante e o entregador é super educado. O melhor é que a batata chega crocante, o que é raro em delivery. Recomendo muito!"</p>
+                    </div>
+                    <strong>— Carlos M., Morador do Centro</strong>
+                </div>
+
+                <div class="quote-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="quote-text">"Finalmente uma lanchonete que entrega lanche quente de verdade! O hambúrguer é muito suculento e o pão não chega desmontando. O molho da casa é viciante."</p>
+                    </div>
+                    <strong>— Mariana S., Cliente fiel</strong>
+                </div>
+
+                <div class="quote-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="quote-text">"Sou chato com lanche, mas o de vocês me ganhou. Pedi o Monster Bacon e estava surreal. Bacon crocante e o ponto da carne perfeito. Já pedi 3 vezes esse mês!"</p>
+                    </div>
+                    <strong>— Felipe D.</strong>
+                </div>
+
+                <div class="quote-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="quote-text">"Pedi o combo família ontem e me surpreendi. Serve muito bem 4 pessoas e o preço é super justo pela qualidade. A entrega foi mais rápida do que o previsto no app."</p>
+                    </div>
+                    <strong>— Roberto e Família</strong>
+                </div>
+
+                <div class="quote-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="quote-text">"Eu não sou muito de carne vermelha, então amei o Chicken Crispy. Super crocante e sequinho por fora, mas úmido por dentro. Virei cliente!"</p>
+                    </div>
+                    <strong>— Juliana P.</strong>
+                </div>
+
+                <div class="quote-card">
+                    <div>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="quote-text">"Melhor descoberta do bairro! A embalagem é ótima, o lanche chega inteiro, sem vazar nada. O atendimento pelo Zap também é muito ágil e simpático."</p>
+                    </div>
+                    <strong>— Amanda T.</strong>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>Lanchonete do Bairro</h3>
+            <p>Rua das Flores, 123 - Bairro Central</p>
+            <p>Aberto de Terça a Domingo, das 18h às 23h.</p>
+            <br>
+            <p style="font-size: 0.8rem; opacity: 0.7;">&copy; <span id="anoAtual"></span> Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="#" onclick="abrirWhatsApp()" class="floating-whatsapp" title="Fale no WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"/>
+        </svg>
+    </a>
+
+    <script>
+        // --- CONFIGURAÇÃO ---
+        const numeroWhatsApp = "5511999999999"; // SUBSTITUA PELO SEU NÚMERO
+        const mensagemInicial = "Olá! Vi o site da lanchonete e gostaria de ver o cardápio e fazer um pedido.";
+
+        // Função para abrir o WhatsApp
+        function abrirWhatsApp(produto) {
+            let msg;
+            
+            if (produto) {
+                // Se clicou em um produto específico
+                msg = `Olá! Gostaria de fazer um pedido: ${produto}.`;
+            } else {
+                // Se clicou no botão genérico
+                msg = mensagemInicial;
+            }
+            
+            // Cria o link e abre
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        }
+
+        // Atualiza o ano no rodapé automaticamente
+        document.getElementById('anoAtual').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

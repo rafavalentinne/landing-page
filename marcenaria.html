@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcenaria Tradição | Móveis Planejados Sob Medida</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variáveis de Design --- */
+        :root {
+            /* Paleta de Cores */
+            --wood-dark: #3E2723; /* Tom madeira escura */
+            --wood-accent: #8D6E63; /* Tom madeira média */
+            --bg-light: #FDFBF7; /* Off-white quente */
+            --bg-section: #EFEBE9; /* Bege acinzentado */
+            --text-main: #2D2D2D;
+            --text-light: #FDFBF7;
+            --green-whatsapp: #25D366;
+            
+            /* Tipografia */
+            --font-title: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            
+            /* Efeitos */
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 8px;
+            --transition: all 0.4s ease;
+        }
+
+        /* --- Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: var(--font-title); line-height: 1.2; }
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        a { text-decoration: none; }
+
+        /* --- Utilitários --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-center { text-align: center; }
+        
+        /* Espaçamento generoso para ar de sofisticação */
+        section { padding: 80px 0; }
+
+        /* --- Botões --- */
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--wood-dark);
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 4px; /* Bordas levemente arredondadas, mais sério */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(62, 39, 35, 0.3);
+            border: 1px solid var(--wood-dark);
+        }
+
+        .btn-cta:hover {
+            background-color: transparent;
+            color: var(--wood-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--green-whatsapp); color: white;
+            width: 64px; height: 64px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 100; transition: var(--transition);
+        }
+        .btn-float:hover { transform: scale(1.1); }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)),
+                        url('https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1936&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        /* Detalhe de borda elegante */
+        header::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 10px;
+            background: repeating-linear-gradient(45deg, var(--wood-dark), var(--wood-dark) 10px, var(--wood-accent) 10px, var(--wood-accent) 20px);
+        }
+
+        .hero-content { max-width: 800px; padding: 20px; animation: fadeIn 1.5s ease; }
+        
+        .badge-50 {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; font-weight: 300; }
+
+        /* --- BENEFÍCIOS (CARDS) --- */
+        .benefits { background-color: var(--bg-section); }
+        
+        .section-header { margin-bottom: 60px; text-align: center; }
+        .section-header h2 { font-size: 2.5rem; color: var(--wood-dark); margin-bottom: 15px; }
+        .separator { width: 60px; height: 3px; background: var(--wood-accent); margin: 0 auto; }
+
+        .grid-cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+        }
+
+        .card {
+            background: #fff; padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--wood-dark);
+        }
+
+        .icon-box {
+            font-size: 2.5rem; color: var(--wood-dark); margin-bottom: 20px;
+        }
+        
+        .card h3 { font-size: 1.4rem; margin-bottom: 15px; color: var(--wood-dark); }
+        .card p { color: #666; font-size: 0.95rem; }
+
+        /* --- GALERIA (Visual Appeal) --- */
+        .gallery { padding: 0; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .gallery-item {
+            height: 350px; position: relative; overflow: hidden;
+            group: cursor-pointer;
+        }
+        .gallery-item img { transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        
+        .overlay {
+            position: absolute; inset: 0; background: rgba(62, 39, 35, 0.6);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.4s;
+        }
+        .gallery-item:hover .overlay { opacity: 1; }
+        .overlay-text { color: #fff; font-family: var(--font-title); font-size: 1.5rem; border-bottom: 1px solid #fff; padding-bottom: 5px;}
+
+        /* --- PROVA SOCIAL --- */
+        .testimonials { background-color: var(--bg-light); }
+        
+        .review-card {
+            background: #fff; padding: 30px; border-radius: var(--radius);
+            box-shadow: var(--shadow); position: relative;
+            margin-bottom: 20px; border-left: 5px solid var(--wood-accent);
+        }
+        
+        .quote-icon { font-size: 3rem; color: #eee; position: absolute; top: 10px; right: 20px; font-family: serif; }
+        .client-name { margin-top: 15px; font-weight: 700; color: var(--wood-dark); display: block; }
+        .client-project { font-size: 0.85rem; color: #888; text-transform: uppercase; }
+
+        /* --- CTA FINAL --- */
+        .final-cta {
+            background-color: var(--wood-dark); color: #fff; text-align: center;
+        }
+        .final-cta h2 { color: #fff; margin-bottom: 20px; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #251614; color: #aaa; padding: 40px 0; text-align: center; font-size: 0.9rem;
+        }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section-header h2 { font-size: 2rem; }
+            .btn-cta { width: 100%; padding: 16px 20px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="hero-content">
+            <span class="badge-50">50 Anos de Excelência</span>
+            <h1>A Marcenaria que Transforma sua Casa em um Lar</h1>
+            <p>Móveis planejados de alto padrão, desenhados para durar gerações. Una a tradição artesanal com o design contemporâneo.</p>
+            <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20um%20orçamento%20de%20móveis." class="btn-cta">Solicitar Orçamento Grátis</a>
+        </div>
+    </header>
+
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Por que escolher nossa marcenaria?</h2>
+                <div class="separator"></div>
+                <p style="margin-top: 15px;">Não vendemos apenas móveis, entregamos tranquilidade e acabamento impecável.</p>
+            </div>
+
+            <div class="grid-cards">
+                <div class="card reveal">
+                    <div class="icon-box">📐</div>
+                    <h3>Projetos 100% Personalizados</h3>
+                    <p>Cada centímetro é aproveitado. Criamos soluções inteligentes para otimizar seu espaço, seja cozinha, quarto ou corporativo.</p>
+                </div>
+                <div class="card reveal" style="transition-delay: 0.2s;">
+                    <div class="icon-box">🪵</div>
+                    <h3>Materiais de Primeira Linha</h3>
+                    <p>Trabalhamos apenas com MDF de alta densidade, ferragens com amortecimento e acabamentos que resistem ao tempo.</p>
+                </div>
+                <div class="card reveal" style="transition-delay: 0.4s;">
+                    <div class="icon-box">🤝</div>
+                    <h3>Entrega no Prazo Garantida</h3>
+                    <p>Respeitamos o seu sonho e o seu tempo. Nosso compromisso com o cronograma é absoluto, sem surpresas desagradáveis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://blog.archtrends.com/wp-content/uploads/2023/07/67842casajardimcozinhagourmetebanheiros1.jpeg" alt="Cozinha Planejada">
+                <div class="overlay"><span class="overlay-text">Cozinhas Gourmet</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop" alt="Closet">
+                <div class="overlay"><span class="overlay-text">Dormitórios & Closets</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop" alt="Sala de Estar">
+                <div class="overlay"><span class="overlay-text">Home Theater</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Quem confia, recomenda</h2>
+                <div class="separator"></div>
+            </div>
+
+            <div class="grid-cards">
+                <div class="review-card reveal">
+                    <span class="quote-icon">“</span>
+                    <p>O acabamento é surreal. Eles pensaram em detalhes que nem eu sabia que precisava. Minha cozinha ficou digna de revista!</p>
+                    <span class="client-name">Mariana Souza</span>
+                    <span class="client-project">Projeto: Cozinha Completa</span>
+                </div>
+                <div class="review-card reveal" style="transition-delay: 0.2s;">
+                    <span class="quote-icon">“</span>
+                    <p>Contratei pelo tempo de mercado e não me arrependi. A montagem foi limpa, rápida e os montadores super educados.</p>
+                    <span class="client-name">Roberto Campos</span>
+                    <span class="client-project">Projeto: Escritório</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta reveal">
+        <div class="container">
+            <h2>Vamos tirar seu projeto do papel?</h2>
+            <p style="margin-bottom: 30px; opacity: 0.9;">Envie sua planta ou medidas e receba um pré-orçamento sem compromisso.</p>
+            <a href="https://wa.me/5500000000000?text=Olá,%20tenho%20um%20projeto%20e%20gostaria%20de%20orçamento." class="btn-cta" style="background: #fff; color: var(--wood-dark); border-color: #fff;">Falar com Marceneiro</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p style="font-family: var(--font-title); font-size: 1.2rem; color: #fff; margin-bottom: 10px;">Marcenaria Tradição</p>
+            <p>Rua da Madeira, 123 - Distrito Industrial</p>
+            <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5500000000000" class="btn-float" aria-label="WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382C17.112 14.382 16.752 14.248 16.479 13.973C15.933 13.427 15.933 12.539 16.479 11.993C17.025 11.447 17.913 11.447 18.459 11.993C19.005 12.539 19.005 13.427 18.459 13.973C18.186 14.248 17.826 14.382 17.472 14.382Z" fill="white"/><path d="M5.957 14.382C5.597 14.382 5.237 14.248 4.964 13.973C4.418 13.427 4.418 12.539 4.964 11.993C5.51 11.447 6.398 11.447 6.944 11.993C7.49 12.539 7.49 13.427 6.944 13.973C6.671 14.248 6.311 14.382 5.957 14.382Z" fill="white"/><path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20Z" fill="white"/><path d="M12 18C8.691 18 6 15.309 6 12H8C8 14.206 9.794 16 12 16C14.206 16 16 14.206 16 12H18C18 15.309 15.309 18 12 18Z" fill="white"/></svg>
+    </a>
+
+    <script>
+        // Animação de Scroll (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Dispara quando 10% do elemento aparece na tela
+            });
+
+            const hiddenElements = document.querySelectorAll('.reveal');
+            hiddenElements.forEach((el) => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

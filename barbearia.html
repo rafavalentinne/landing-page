@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Imperador | O Corte de Respeito</title>
+    <style>
+        /* --- Variáveis e Reset --- */
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-gold: #D4AF37; /* Dourado Clássico */
+            --accent-hover: #b59020;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Utilitários --- */
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 60px 0; }
+        .text-center { text-align: center; }
+        .highlight { color: var(--accent-gold); }
+
+        /* --- Botão CTA --- */
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: #000;
+            padding: 18px 40px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-cta:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* --- Header / Hero --- */
+        header {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1200&auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efeito Parallax simples */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Benefícios (Cards) --- */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            background-color: var(--bg-card);
+            padding: 40px 20px;
+            border-bottom: 3px solid var(--accent-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- Prova Social --- */
+        .social-proof {
+            background-color: #0f0f0f;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .testimonial {
+            background: var(--bg-card);
+            padding: 30px;
+            margin: 15px;
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .testimonial strong {
+            display: block;
+            margin-top: 15px;
+            color: var(--accent-gold);
+            font-style: normal;
+        }
+
+        /* --- Localização --- */
+        .location {
+            text-align: center;
+        }
+        .map-frame {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            filter: grayscale(100%) invert(92%) contrast(83%); /* Mapa estilo Dark */
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #000;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- ANIMAÇÕES (CSS + JS) --- */
+        
+        /* Estado inicial dos elementos animados: invisível e deslocado para baixo */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* Estado final: visível e na posição original */
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Atraso para elementos em grid (efeito cascata) */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .container { padding: 40px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="hero-content">
+            <h1 class="hero-title animate-on-scroll">Estilo, Tradição e <br><span class="highlight">Cerveja Gelada</span></h1>
+            <p class="hero-subtitle animate-on-scroll">Não é apenas um corte, é o seu momento. Barba, cabelo e bigode com a técnica clássica que você respeita.</p>
+            
+            <a href="https://wa.me/5511999999999?text=Opa,%20gostaria%20de%20agendar%20um%20horário." class="btn-cta animate-on-scroll">
+                Agendar Horário
+            </a>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="text-center">
+            <h2 class="animate-on-scroll">A Experiência Imperador</h2>
+            <p style="color: var(--text-muted); margin-top: 10px;" class="animate-on-scroll">Porque você merece mais do que um corte rápido de 15 minutos.</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card text-center animate-on-scroll delay-100">
+                <span class="icon">✂️</span>
+                <h3>Corte de Precisão</h3>
+                <p>Barbeiros experientes especialistas em degradê, tesoura e visagismo masculino.</p>
+            </div>
+            <div class="benefit-card text-center animate-on-scroll delay-200">
+                <span class="icon">🍺</span>
+                <h3>Primeira Cerveja Grátis</h3>
+                <p>Relaxe. Enquanto cuidamos do seu visual, a primeira Heineken é por nossa conta.</p>
+            </div>
+            <div class="benefit-card text-center animate-on-scroll delay-300">
+                <span class="icon">🔥</span>
+                <h3>Toalha Quente</h3>
+                <p>O ritual clássico de barboterapia. Toalha quente e navalha afiada para uma barba perfeita.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <h2 class="text-center animate-on-scroll">O que dizem no bairro</h2>
+            <div class="benefits-grid">
+                <div class="testimonial animate-on-scroll delay-100">
+                    <p>"Melhor degradê da região. O ambiente é sensacional, você entra e esquece dos problemas."</p>
+                    <strong>— Marcos V.</strong>
+                </div>
+                <div class="testimonial animate-on-scroll delay-200">
+                    <p>"Atendimento de primeira. Marquei pelo WhatsApp, cheguei e fui atendido na hora. Recomendo."</p>
+                    <strong>— André L.</strong>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="https://wa.me/5511999999999" class="btn-cta animate-on-scroll">Quero ser atendido</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="location container animate-on-scroll">
+        <h2>Onde Estamos</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Rua Augusta, 000 - São Paulo, SP</p>
+        
+        <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.2889392237077!2d-46.6623634!3d-23.5580667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59cd33e8139f%3A0x6b4763137e0964e0!2sR.%20Augusta%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1689260000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <footer>
+        <p>Barbearia Imperador © 2024. Todos os direitos reservados.</p>
+        <p>Estilo e Tradição desde 2015.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Selecionar todos os elementos que devem ser animados
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+
+            // 2. Configurar o "Observador" (Intersection Observer)
+            // Ele vigia quando os elementos entram na tela
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Se o elemento estiver visível na tela
+                    if (entry.isIntersecting) {
+                        // Adiciona a classe .visible que dispara o CSS
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Dispara quando 10% do elemento estiver visível
+            });
+
+            // 3. Mandar o observador vigiar cada elemento
+            elementsToAnimate.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

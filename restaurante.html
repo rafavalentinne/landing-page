@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandacaru Sabores | O Melhor do Nordeste</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,600;0,700;1,400&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Variáveis de Design --- */
+        :root {
+            --primary-terracotta: #A0522D;
+            --primary-dark: #68321A;
+            --bg-sand: #FDF5E6;
+            --bg-white: #ffffff;
+            --accent-green: #556B2F;
+            --text-main: #3E2723;
+            --whatsapp-color: #25D366;
+            --font-display: 'Bitter', serif;
+            --font-body: 'Open Sans', sans-serif;
+            --shadow: 0 8px 24px rgba(160, 82, 45, 0.15);
+            --radius: 12px;
+            --transition: all 0.4s ease-out;
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background-color: var(--bg-sand); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; font-weight: 700; }
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        a { text-decoration: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .text-center { text-align: center; }
+
+        /* --- Botões --- */
+        .btn-main {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: var(--primary-terracotta); color: #fff; padding: 16px 32px;
+            border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            transition: var(--transition); box-shadow: 0 4px 15px rgba(160, 82, 45, 0.4); border: 2px solid transparent;
+        }
+        .btn-main:hover { background-color: transparent; color: var(--primary-terracotta); border-color: var(--primary-terracotta); transform: translateY(-3px); }
+
+        .btn-outline {
+            display: inline-block; border: 2px solid var(--primary-terracotta); color: var(--primary-terracotta);
+            padding: 12px 24px; border-radius: 50px; font-weight: 600; transition: var(--transition);
+        }
+        .btn-outline:hover { background: var(--primary-terracotta); color: #fff; }
+
+        .float-wa {
+            position: fixed; bottom: 25px; right: 25px; background: var(--whatsapp-color); color: white;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 100; transition: var(--transition); animation: pulse 2s infinite;
+        }
+        .float-wa:hover { transform: scale(1.1); }
+
+        /* --- HERO SECTION (CORRIGIDO) --- */
+        header {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+            background-color: #3E2723; /* Fallback se a imagem não carregar */
+        }
+
+        /* Elemento de fundo separado para aplicar o blur */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            
+            /* IMAGEM: Pratos rústicos / Madeira escura */
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                              url('https://images.unsplash.com/photo-1544510802-5c4be67468d6?q=80&w=1920&auto=format&fit=crop');
+            
+            background-size: cover;
+            background-position: center;
+            
+            /* Efeito de Desfoque */
+            filter: blur(8px);
+            
+            /* Escala para evitar bordas brancas causadas pelo blur */
+            transform: scale(1.1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Texto fica na frente do fundo */
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-tag {
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
+            padding: 8px 16px; border-radius: 30px; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.8rem; display: inline-block; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.4);
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+
+        .hero p { 
+            font-size: 1.2rem; 
+            margin-bottom: 200px;
+            opacity: 0.95; 
+            font-weight: 400; 
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5); 
+            }
+
+        /* --- SEÇÕES GERAIS --- */
+        section { padding: 80px 0; }
+        .section-header { margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary-terracotta); margin-bottom: 10px; }
+        .section-header p { color: #666; }
+        .bg-sand { background-color: var(--bg-sand); }
+        .bg-white { background-color: var(--bg-white); }
+
+        /* --- CARDS --- */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .food-card { background: var(--bg-sand); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+        .food-card:hover { transform: translateY(-10px); background: #fff; }
+        .card-img-container { height: 250px; overflow: hidden; position: relative; }
+        .card-img-container img { transition: transform 0.5s ease; }
+        .food-card:hover .card-img-container img { transform: scale(1.1); }
+        .card-body { padding: 30px; text-align: center; }
+        .card-body h3 { font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-dark); }
+        .card-body p { font-size: 0.95rem; color: #555; margin-bottom: 20px; }
+        .price { display: block; font-weight: 700; color: var(--accent-green); font-size: 1.2rem; margin-bottom: 20px; }
+
+        /* --- SOBRE & HISTÓRIA --- */
+        .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .grid-img { border-radius: var(--radius); box-shadow: var(--shadow); height: 450px; }
+        .features-list { list-style: none; margin-top: 30px; }
+        .features-list li { margin-bottom: 15px; display: flex; align-items: center; font-weight: 600; color: var(--primary-dark); }
+        .features-list li::before { content: '✓'; color: var(--bg-sand); background: var(--primary-terracotta); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 0.8rem; }
+        
+        .history-section h3 { color: var(--primary-dark); font-size: 1.5rem; margin-bottom: 15px; margin-top: 30px;}
+
+        /* --- PROVA SOCIAL --- */
+        .reviews { background: var(--primary-dark); color: var(--bg-sand); }
+        .reviews h2 { color: #fff; }
+        .review-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: var(--radius); text-align: left; border-left: 4px solid var(--primary-terracotta); }
+        .stars { color: #FFD700; margin-bottom: 15px; display: block; }
+        .review-text { font-style: italic; opacity: 0.9; margin-bottom: 15px; }
+        .client { font-weight: 700; color: #fff; }
+
+        /* --- FOOTER --- */
+        footer { background: #1A1A1A; color: #888; padding: 50px 0; text-align: center; }
+        footer p { font-size: 0.9rem; margin-bottom: 10px; }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .two-col-grid { grid-template-columns: 1fr; }
+            .about-img-col { order: -1; }
+            .grid-img { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+        <div class="hero-bg"></div>
+        
+        <div class="hero-content reveal">
+            <span class="hero-tag">Tradição & Afeto</span>
+            <h1>O Verdadeiro Sabor do <br>Nordeste na Sua Mesa</h1>
+            <p>Ingredientes autênticos, receitas de família e aquele tempero arretado que aquece o coração. Venha viver essa experiência.</p>
+            
+            <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20reservar%20uma%20mesa." class="btn-main" style="margin-top: 30px;">
+                Reservar Mesa
+            </a>
+        </div>
+    </header>
+
+    <section class="bg-white">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Nossos Clássicos</h2>
+                <p>Pratos preparados com ingredientes frescos trazidos diretamente do sertão.</p>
+            </div>
+
+            <div class="grid-cards">
+                <div class="food-card reveal">
+                    <div class="card-img-container">
+                        <img src="https://lirp.cdn-website.com/33406c6e/dms3rep/multi/opt/carne+de+sol-1920w.jpg" alt="Carne de Sol">
+                    </div>
+                    <div class="card-body">
+                        <h3>Carne de Sol Completa</h3>
+                        <p>Acompanha baião de dois cremoso, macaxeira frita, paçoca de carne seca e queijo coalho grelhado.</p>
+                        <span class="price">R$ 89,90 (Serve 2)</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20pedir%20a%20Carne%20de%20Sol" class="btn-outline">Pedir Agora</a>
+                    </div>
+                </div>
+
+                <div class="food-card reveal" style="transition-delay: 0.2s;">
+                    <div class="card-img-container">
+                        <img src="https://www.arrozcodil.com.br/uploads/Post/2020/03/baiao-de-dois-especial-codil-1584385637.jpg" alt="Baião de Dois">
+                    </div>
+                    <div class="card-body">
+                        <h3>Baião de Dois Especial</h3>
+                        <p>Arroz, feijão de corda, queijo coalho, bacon e linguiça calabresa. Finalizado com coentro fresco.</p>
+                        <span class="price">R$ 54,90</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20pedir%20o%20Baião" class="btn-outline">Pedir Agora</a>
+                    </div>
+                </div>
+
+                <div class="food-card reveal" style="transition-delay: 0.4s;">
+                    <div class="card-img-container">
+                        <img src="https://img.band.com.br/image/2023/06/08/moqueca-de-peixe-com-camarao-1741.jpg" alt="Moqueca">
+                    </div>
+                    <div class="card-body">
+                        <h3>Moqueca de Peixe</h3>
+                        <p>Peixe fresco do dia, cozido lentamente no leite de coco natural, azeite de dendê e pimentões coloridos.</p>
+                        <span class="price">R$ 110,00 (Serve 3)</span>
+                        <a href="https://wa.me/5500000000000?text=Quero%20pedir%20a%20Moqueca" class="btn-outline">Pedir Agora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-sand">
+        <div class="container">
+            <div class="two-col-grid">
+                <div class="reveal">
+                    <h2>Mais que um restaurante, <br>um pedacinho do Nordeste.</h2>
+                    <p style="margin-top: 20px; color: #555;">
+                        Nosso ambiente foi pensado para trazer o aconchego da casa de vó com a sofisticação da gastronomia contemporânea. Aqui, cada detalhe importa, desde a música ambiente até a cerâmica onde servimos a comida.
+                    </p>
+                    <ul class="features-list">
+                        <li>Ingredientes 100% autênticos</li>
+                        <li>Ambiente climatizado e aconchegante</li>
+                        <li>Carta de Cachaças Artesanais</li>
+                    </ul>
+                </div>
+                <div class="about-img-col reveal">
+                    <img src="https://www.baiaocozinhanordestina.com.br/wp-content/uploads/2023/02/local_1.jpeg" alt="Ambiente Restaurante" class="grid-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>O que nossos clientes dizem</h2>
+                <p style="color: #ccc;">Histórias de quem provou e aprovou.</p>
+            </div>
+
+            <div class="grid-cards">
+                <div class="review-card reveal">
+                    <span class="stars">★★★★★</span>
+                    <p class="review-text">"A melhor carne de sol que já comi fora do Nordeste. A macaxeira estava derretendo na boca. Atendimento nota 10!"</p>
+                    <span class="client">Ricardo Mendes</span>
+                </div>
+                <div class="review-card reveal" style="transition-delay: 0.2s;">
+                    <span class="stars">★★★★★</span>
+                    <p class="review-text">"Ambiente lindo e comida farta. O dadinho de tapioca de entrada é obrigatório. Voltarei com certeza."</p>
+                    <span class="client">Fernanda Lima</span>
+                </div>
+                <div class="review-card reveal" style="transition-delay: 0.4s;">
+                    <span class="stars">★★★★★</span>
+                    <p class="review-text">"Fiz meu aniversário lá e foi incrível. A moqueca serve muito bem 3 pessoas. Preço justo pela qualidade."</p>
+                    <span class="client">João Pedro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="history-section bg-white">
+        <div class="container">
+            <div class="two-col-grid">
+                <div class="reveal">
+                    <h2>Nossa Raiz, Nossa História</h2>
+                    <p style="color: #555; margin-bottom: 20px;">O Mandacaru Sabores nasceu da saudade. Saudade da comida de Dona Zeferina, nossa avó, que no interior do Pernambuco transformava ingredientes simples em banquetes de afeto. Trouxemos suas panelas de barro e seus segredos para cá, mantendo viva a chama da tradição.</p>
+                    
+                    <h3>O Astro da Casa: A Carne de Sol Lendária</h3>
+                    <p style="color: #555;">Nosso prato mais vendido não é por acaso. Nossa carne de sol é curada artesanalmente aqui mesmo no restaurante, num processo que leva 4 dias, garantindo a textura macia e o sabor inconfundível que faz nossos clientes voltarem sempre.</p>
+                    
+                    <a href="https://wa.me/5500000000000?text=Quero%20provar%20a%20Carne%20de%20Sol%20Lendária" class="btn-main" style="margin-top: 20px;">
+                        Quero Provar a Lenda
+                    </a>
+                </div>
+                <div class="reveal">
+                    <img src="https://i.panelinha.com.br/i1/bk-8335-cp-2019-01-03-11389.webp" alt="Preparo artesanal da carne de sol" class="grid-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 20px;">Mandacaru Sabores</h3>
+            <p>Rua das Acácias, 123 - Jardins, São Paulo</p>
+            <p>(11) 99999-9999 | contato@mandacaru.com.br</p>
+            <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">&copy; 2024 Mandacaru Sabores. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5500000000000" class="float-wa" aria-label="WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382C17.112 14.382 16.752 14.248 16.479 13.973C15.933 13.427 15.933 12.539 16.479 11.993C17.025 11.447 17.913 11.447 18.459 11.993C19.005 12.539 19.005 13.427 18.459 13.973C18.186 14.248 17.826 14.382 17.472 14.382Z" fill="white"/><path d="M5.957 14.382C5.597 14.382 5.237 14.248 4.964 13.973C4.418 13.427 4.418 12.539 4.964 11.993C5.51 11.447 6.398 11.447 6.944 11.993C7.49 12.539 7.49 13.427 6.944 13.973C6.671 14.248 6.311 14.382 5.957 14.382Z" fill="white"/><path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20Z" fill="white"/><path d="M12 18C8.691 18 6 15.309 6 12H8C8 14.206 9.794 16 12 16C14.206 16 16 14.206 16 12H18C18 15.309 15.309 18 12 18Z" fill="white"/></svg>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

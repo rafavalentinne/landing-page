@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ótica Vision | Estilo e Clareza em SP</title>
+    <style>
+        /* --- Variáveis de Cor e Reset --- */
+        :root {
+            --bg-color: #f9f9f9;
+            --text-color: #333333;
+            --accent-color: #25D366; /* Verde WhatsApp */
+            --accent-hover: #128C7E;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #666666;
+            --light-gray: #e0e0e0;
+            --card-bg: #ffffff;
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        img { max-width: 100%; display: block; }
+
+        /* --- Utilitários --- */
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 40px 0; }
+        h1, h2, h3 { color: var(--dark-gray); line-height: 1.2; }
+        h2 { text-align: center; font-size: 2rem; margin-bottom: 40px; }
+        .text-center { text-align: center; }
+
+        /* --- Botão CTA --- */
+        .btn-cta {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: var(--accent-color); color: white; text-decoration: none;
+            padding: 16px 32px; border-radius: 50px; font-weight: bold; font-size: 1.1rem;
+            transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 20px; width: 100%; max-width: 350px; border: none; cursor: pointer;
+        }
+        .btn-cta:hover { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+
+        /* --- Header / Hero Section (MODIFICADO) --- */
+        header {
+            position: relative; /* Necessário para o pseudo-elemento se posicionar */
+            overflow: hidden; /* Garante que o blur não vaze nas bordas */
+            text-align: center;
+            padding: 120px 20px; /* Aumentei o padding para dar mais destaque à imagem */
+            background-color: #333; /* Cor de fundo de fallback */
+            color: #ffffff; /* Texto agora é branco */
+        }
+
+        /* Camada da Imagem Desfocada */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Imagem de fundo + um gradiente escuro (overlay) para o texto branco ficar legível */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            /* O filtro que faz o desfoque */
+            filter: blur(8px);
+            /* Pequeno zoom para evitar bordas brancas que o blur às vezes causa */
+            transform: scale(1.05);
+            z-index: 0;
+        }
+
+        /* Garante que o conteúdo fique NA FRENTE da imagem borrada */
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            color: #ffffff; /* Título branco */
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #e0e0e0; /* Subtítulo cinza claro */
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* Cor do texto pequeno abaixo do botão */
+        header p:last-of-type {
+             color: #cccccc;
+        }
+
+
+        /* --- Grids Gerais --- */
+        .grid-3 { display: grid; grid-template-columns: 1fr; gap: 25px; }
+
+        /* --- Cards Genéricos --- */
+        .card {
+            background: var(--card-bg); padding: 30px; border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-color: var(--light-gray); }
+
+        /* --- Seção de Benefícios --- */
+        .benefits { background-color: var(--bg-color); margin-top: 40px;}
+        .card-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
+        .card h3 { margin-bottom: 10px; font-size: 1.25rem; }
+
+        /* --- Seção de Produtos --- */
+        .products-section { background-color: #fff; }
+        .product-card { padding: 0; overflow: hidden; text-align: center; }
+        .product-image-container { position: relative; height: 250px; overflow: hidden; background: #f0f0f0;}
+        .product-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .product-card:hover .product-image-container img { transform: scale(1.05); }
+        .product-info { padding: 20px; }
+        .price-tag { display: inline-block; background-color: var(--dark-gray); color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold; margin: 10px 0; }
+        .btn-product { padding: 10px 20px; font-size: 0.9rem; width: auto; margin-top: 10px;}
+
+        /* --- Seção de Prova Social --- */
+        .social-proof { background-color: var(--dark-gray); color: #fff; padding: 60px 0; }
+        .social-proof h2 { color: #fff; }
+        .testimonial-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; text-align: center; }
+        .testimonial-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px; object-fit: cover; border: 3px solid var(--accent-color); }
+        .testimonial p { font-style: italic; margin-bottom: 20px; font-size: 0.95rem; opacity: 0.9; }
+        .testimonial cite { display: block; font-weight: bold; font-style: normal; color: var(--accent-color); }
+
+        /* --- Seção de Localização --- */
+        .location-section { background-color: #fff; text-align: center; }
+        .map-container { width: 100%; height: 400px; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 20px; }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+        .address-box { margin-bottom: 20px; color: var(--medium-gray); font-weight: 500;}
+
+        /* --- Footer --- */
+        footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #ccc; background: var(--dark-gray); }
+
+        /* --- Responsividade (Desktop) --- */
+        @media (min-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="hero-title">Sua nova visão começa aqui.</h1>
+            <p class="hero-subtitle">Armações premium e lentes de alta tecnologia no Centro Histórico de SP. Descubra o par perfeito para o seu estilo.</p>
+            
+            <a href="https://wa.me/5511999999999?text=Olá,%20vim%20pelo%20site%20e%20gostaria%20de%20atendimento." class="btn-cta" target="_blank">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px;"><path d="M17.472 14.382C17.112 14.382 16.752 14.248 16.479 13.973C15.933 13.427 15.933 12.539 16.479 11.993C17.025 11.447 17.913 11.447 18.459 11.993C19.005 12.539 19.005 13.427 18.459 13.973C18.186 14.248 17.826 14.382 17.472 14.382Z" fill="white"/><path d="M5.957 14.382C5.597 14.382 5.237 14.248 4.964 13.973C4.418 13.427 4.418 12.539 4.964 11.993C5.51 11.447 6.398 11.447 6.944 11.993C7.49 12.539 7.49 13.427 6.944 13.973C6.671 14.248 6.311 14.382 5.957 14.382Z" fill="white"/><path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20Z" fill="white"/><path d="M12 18C8.691 18 6 15.309 6 12H8C8 14.206 9.794 16 12 16C14.206 16 16 14.206 16 12H18C18 15.309 15.309 18 12 18Z" fill="white"/></svg>
+                Falar com Consultor
+            </a>
+            <p>Resposta rápida em horário comercial.</p>
+        </div>
+    </header>
+
+    <section class="benefits container">
+        <h2>Por que escolher a Ótica Vision?</h2>
+        <div class="grid-3">
+            <div class="card text-center">
+                <span class="card-icon">👓</span>
+                <h3>Visagismo Especializado</h3>
+                <p>Encontramos a armação ideal para o formato do seu rosto e sua personalidade.</p>
+            </div>
+            <div class="card text-center">
+                <span class="card-icon">⚡</span>
+                <h3>Rapidez na Entrega</h3>
+                <p>Lentes prontas em tempo recorde com tecnologia de laboratório digital de ponta.</p>
+            </div>
+            <div class="card text-center">
+                <span class="card-icon">🛡️</span>
+                <h3>Garantia Total</h3>
+                <p>Oferecemos garantia estendida em armações e adaptação garantida nas lentes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <div class="container">
+            <h2>Destaques da Coleção</h2>
+            <p class="text-center" style="margin-bottom: 40px; color: var(--medium-gray);">Modelos selecionados com preços especiais. Clique para reservar o seu.</p>
+            <div id="products-grid" class="grid-3">
+                </div>
+            <div class="text-center" style="margin-top: 40px;">
+                 <a href="https://wa.me/5511999999999?text=Quero%20ver%20o%20catálogo%20completo." class="btn-cta">
+                    Ver Catálogo Completo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <h2>Quem usa, recomenda</h2>
+            <div class="grid-3 testimonial-grid">
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces" alt="Foto de cliente" class="testimonial-avatar">
+                    <div class="testimonial">
+                        <p>"O atendimento na loja da Galeria Boa Vista foi impecável. Me ajudaram a escolher um óculos que nunca teria coragem de provar sozinha e amei!"</p>
+                        <cite>— Patrícia S.</cite>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces" alt="Foto de cliente" class="testimonial-avatar">
+                    <div class="testimonial">
+                        <p>"Preço justo e qualidade excelente. Fiz meus óculos multifocais e a adaptação foi imediata. Recomendo muito a equipe."</p>
+                        <cite>— Roberto M.</cite>
+                    </div>
+                </div>
+                 <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=faces" alt="Foto de cliente" class="testimonial-avatar">
+                    <div class="testimonial">
+                        <p>"Já é meu terceiro óculos com eles. A agilidade na entrega e o cuidado no pós-venda fazem toda a diferença. Nota 10."</p>
+                        <cite>— Camila F.</cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="location-section">
+        <div class="container">
+            <h2>Visite nossa loja</h2>
+            <div class="address-box">
+                <p>📍 Galeria Boa Vista - R. Boa Vista, 274 - Loja 35</p>
+                <p>Centro Histórico de São Paulo, SP - CEP 01014-000</p>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.287791863284!2d-46.6343032238265!3d-23.54311786146936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5850d0667e15%3A0x66ee135533862803!2sGaleria%20Boa%20Vista!5e0!3m2!1spt-BR!2sbr!4v1715696085936!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p style="font-weight: bold; color: #fff; font-size: 1.2rem; margin-bottom: 10px;">Ótica Vision</p>
+            <p>&copy; <span id="year">2024</span> Todos os direitos reservados.</p>
+            <p>Fale conosco: (11) 99999-9999</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        const produtosData = [
+            { id: 1, nome: "Classic Acetate Tortoise", preco: "R$ 499,00", img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3", desc: "Estilo clássico e atemporal." },
+            { id: 2, nome: "Metal Slim Gold", preco: "R$ 580,00", img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3", desc: "Leveza e sofisticação." },
+            { id: 3, nome: "Bold Black Frame", preco: "R$ 350,00", img: "https://images.unsplash.com/photo-1606244500917-2c4446922648?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3", desc: "Marcante e moderno." }
+        ];
+
+        const productsGrid = document.getElementById('products-grid');
+
+        function renderProducts() {
+            let htmlContent = '';
+            produtosData.forEach(produto => {
+                const whatsappLink = `https://wa.me/5511999999999?text=Olá,%20gostei%20do%20modelo%20${produto.nome},%20por%20${produto.preco}.%20Ainda%20tem%20disponível?`;
+                htmlContent += `
+                    <div class="card product-card">
+                        <div class="product-image-container">
+                            <img src="${produto.img}" alt="${produto.nome}">
+                        </div>
+                        <div class="product-info">
+                            <h3>${produto.nome}</h3>
+                            <p style="font-size: 0.9rem; color: #666;">${produto.desc}</p>
+                            <span class="price-tag">${produto.preco}</span>
+                            <br>
+                            <a href="${whatsappLink}" class="btn-cta btn-product" target="_blank">Reservar</a>
+                        </div>
+                    </div>
+                `;
+            });
+            productsGrid.innerHTML = htmlContent;
+        }
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+
+</body>
+</html>
