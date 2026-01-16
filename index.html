@@ -8,363 +8,401 @@
 
   <style>
     :root{
-      --bg: #0b0f17;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --line: rgba(255,255,255,.10);
-      --accent: #7c9cff;
-      --accent2: #6ee7b7;
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
-      --radius: 18px;
-      --radius2: 24px;
+      --bg:#0b0f17;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.08);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --line:rgba(255,255,255,.10);
+      --accent:#7c9cff;
+      --accent2:#6ee7b7;
+      --warn:#fbbf24;
+      --shadow:0 18px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:24px;
     }
 
-    *{ box-sizing: border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
       background:
         radial-gradient(1200px 700px at 80% -10%, rgba(124,156,255,.22), transparent 60%),
         radial-gradient(900px 600px at 10% 10%, rgba(110,231,183,.14), transparent 55%),
         radial-gradient(800px 500px at 70% 110%, rgba(124,156,255,.14), transparent 55%),
         var(--bg);
-      color: var(--text);
+      color:var(--text);
       overflow-x:hidden;
     }
-
-    a{ color: inherit; text-decoration: none; }
-    .wrap{ width:min(1100px, 92vw); margin:0 auto; padding: 20px 0 70px; }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1100px,92vw);margin:0 auto;padding:20px 0 70px}
 
     /* Top bar */
     .topbar{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      padding: 14px 0 8px;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:14px;padding:14px 0 8px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight: 800;
-      letter-spacing: .2px;
-    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
     .logo{
-      width:40px; height:40px; border-radius: 14px;
-      background: linear-gradient(135deg, rgba(124,156,255,.95), rgba(110,231,183,.85));
-      box-shadow: 0 10px 35px rgba(124,156,255,.18);
-      position:relative;
-      overflow:hidden;
+      width:40px;height:40px;border-radius:14px;
+      background:linear-gradient(135deg,rgba(124,156,255,.95),rgba(110,231,183,.85));
+      box-shadow:0 10px 35px rgba(124,156,255,.18);
+      position:relative;overflow:hidden;
     }
     .logo:after{
-      content:"";
-      position:absolute; inset:-40%;
-      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.55), transparent 55%);
-      transform: rotate(18deg);
+      content:"";position:absolute;inset:-40%;
+      background:radial-gradient(circle at 40% 40%,rgba(255,255,255,.55),transparent 55%);
+      transform:rotate(18deg);
     }
-    .nav{
-      display:flex; align-items:center; gap:10px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
+    .nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .chip{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: var(--muted);
-      transition: transform .15s ease, background .15s ease;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:10px 12px;border-radius:999px;
+      font-size:13px;color:var(--muted);
+      transition:transform .15s ease,background .15s ease;
     }
-    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
+    .chip:hover{transform:translateY(-1px);background:rgba(255,255,255,.06)}
 
     /* Hero */
     .hero{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 16px;
-      padding: 14px 0 10px;
-      align-items: stretch;
+      display:grid;grid-template-columns:1.25fr .75fr;
+      gap:16px;padding:14px 0 10px;align-items:stretch;
     }
-    @media (max-width: 900px){
-      .hero{ grid-template-columns: 1fr; }
-    }
-
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
     .heroCard{
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      position:relative;
-      overflow:hidden;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      border-radius:var(--radius2);box-shadow:var(--shadow);
+      padding:18px;position:relative;overflow:hidden;
     }
     .heroCard:before{
-      content:"";
-      position:absolute; inset:-60%;
-      background: radial-gradient(circle at 20% 30%, rgba(124,156,255,.20), transparent 55%);
-      transform: rotate(12deg);
-      pointer-events:none;
+      content:"";position:absolute;inset:-60%;
+      background:radial-gradient(circle at 20% 30%,rgba(124,156,255,.20),transparent 55%);
+      transform:rotate(12deg);pointer-events:none;
     }
     .kicker{
-      display:inline-flex; align-items:center; gap:8px;
-      color: rgba(255,255,255,.86);
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: .35px;
-      text-transform: uppercase;
-      background: rgba(124,156,255,.10);
-      border: 1px solid rgba(124,156,255,.22);
-      padding: 8px 10px;
-      border-radius: 999px;
+      display:inline-flex;align-items:center;gap:8px;
+      color:rgba(255,255,255,.86);font-weight:700;font-size:12px;
+      letter-spacing:.35px;text-transform:uppercase;
+      background:rgba(124,156,255,.10);border:1px solid rgba(124,156,255,.22);
+      padding:8px 10px;border-radius:999px;
     }
-    .kickerDot{
-      width:8px;height:8px;border-radius:50%;
-      background: var(--accent2);
-      box-shadow: 0 0 0 4px rgba(110,231,183,.12);
-    }
-    h1{
-      margin: 12px 0 8px;
-      font-size: clamp(28px, 3.2vw, 44px);
-      line-height: 1.05;
-      letter-spacing: -0.6px;
-    }
-    .sub{
-      margin:0;
-      color: var(--muted);
-      font-size: clamp(14px, 1.6vw, 17px);
-      line-height: 1.4;
-      max-width: 62ch;
-    }
+    .kickerDot{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 0 4px rgba(110,231,183,.12)}
+    h1{margin:12px 0 8px;font-size:clamp(28px,3.2vw,44px);line-height:1.05;letter-spacing:-.6px}
+    .sub{margin:0;color:var(--muted);font-size:clamp(14px,1.6vw,17px);line-height:1.4;max-width:62ch}
 
-    .ctaRow{
-      display:flex; gap:10px; flex-wrap: wrap;
-      margin-top: 14px;
-    }
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
     .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      font-weight: 800;
-      font-size: 14px;
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 14px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-weight:800;font-size:14px;cursor:pointer;
+      transition:transform .15s ease,background .15s ease,border-color .15s ease;
       user-select:none;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.14); }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14)}
     .btnPrimary{
-      background: linear-gradient(135deg, rgba(124,156,255,.95), rgba(110,231,183,.75));
-      border-color: transparent;
-      color: #061018;
+      background:linear-gradient(135deg,rgba(124,156,255,.95),rgba(110,231,183,.75));
+      border-color:transparent;color:#061018;
     }
-    .btnPrimary:hover{ transform: translateY(-1px); filter: brightness(1.02); }
-    .btnSmall{ padding: 10px 12px; border-radius: 999px; font-size: 13px; font-weight: 750; }
-
-    .heroSide{
-      display:grid;
-      gap: 10px;
-      align-content: start;
-    }
+    .btnPrimary:hover{filter:brightness(1.02)}
+    .btnSmall{padding:10px 12px;border-radius:999px;font-size:13px;font-weight:750}
+    .btnGhost{background:rgba(255,255,255,.04)}
+    .heroSide{display:grid;gap:10px;align-content:start}
     .mini{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius);
-      padding: 14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);padding:14px;
     }
-    .miniTitle{ font-weight: 900; margin:0 0 6px; font-size: 14px; }
-    .miniText{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .miniTitle{font-weight:900;margin:0 0 6px;font-size:14px}
+    .miniText{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
 
     /* Sections */
     .section{
-      margin-top: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius2);
-      padding: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.22);
+      margin-top:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius2);padding:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.22);
     }
     .sectionHeader{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap: 10px; flex-wrap: wrap;
-      margin-bottom: 12px;
+      display:flex;align-items:flex-end;justify-content:space-between;
+      gap:10px;flex-wrap:wrap;margin-bottom:12px;
     }
-    .h2{
-      margin:0;
-      font-size: 18px;
-      letter-spacing: -0.2px;
-    }
-    .hint{ margin:0; color: var(--muted); font-size: 13px; }
+    .h2{margin:0;font-size:18px;letter-spacing:-.2px}
+    .hint{margin:0;color:var(--muted);font-size:13px}
 
     /* Benefits */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
     .card{
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border-radius: var(--radius);
-      padding: 14px;
-      position:relative;
-      overflow:hidden;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      border-radius:var(--radius);padding:14px;position:relative;overflow:hidden;
     }
     .card:before{
-      content:"";
-      position:absolute; inset:-60%;
-      background: radial-gradient(circle at 30% 20%, rgba(124,156,255,.14), transparent 55%);
-      transform: rotate(10deg);
-      pointer-events:none;
+      content:"";position:absolute;inset:-60%;
+      background:radial-gradient(circle at 30% 20%,rgba(124,156,255,.14),transparent 55%);
+      transform:rotate(10deg);pointer-events:none;
     }
-    .cardTop{
-      display:flex; align-items:center; gap:10px; margin-bottom: 8px;
-    }
+    .cardTop{display:flex;align-items:center;gap:10px;margin-bottom:8px}
     .icon{
-      width:34px; height:34px; border-radius: 12px;
-      display:grid; place-items:center;
-      background: rgba(124,156,255,.14);
-      border: 1px solid rgba(124,156,255,.22);
-      flex: 0 0 auto;
+      width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+      background:rgba(124,156,255,.14);
+      border:1px solid rgba(124,156,255,.22);
+      flex:0 0 auto;
     }
-    .cardTitle{ margin:0; font-weight: 900; font-size: 14px; }
-    .cardText{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+    .cardTitle{margin:0;font-weight:900;font-size:14px}
+    .cardText{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
+
+    /* Filters */
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .filterBtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:9px 12px;border-radius:999px;
+      font-size:13px;font-weight:850;color:rgba(255,255,255,.84);
+      cursor:pointer;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .filterBtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+    .filterBtn.active{
+      background:rgba(124,156,255,.16);
+      border-color:rgba(124,156,255,.32);
+    }
 
     /* Portfolio */
-    .portfolioGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    @media (max-width: 900px){
-      .portfolioGrid{ grid-template-columns: 1fr; }
-    }
+    .portfolioGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    @media (max-width:900px){.portfolioGrid{grid-template-columns:1fr}}
+
     .pItem{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius);
-      padding: 14px;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      position:relative;
-      overflow:hidden;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);
+      padding:12px;
+      transition:transform .15s ease,background .15s ease,border-color .15s ease;
+      position:relative;overflow:hidden;
     }
-    .pItem:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.16);
+    .pItem:hover{transform:translateY(-2px);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+    .pHead{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+      margin-bottom:10px;
     }
     .pBadge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(0,0,0,.18);
-      color: rgba(255,255,255,.78);
-      font-size: 12px;
-      font-weight: 800;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(0,0,0,.18);color:rgba(255,255,255,.78);
+      font-size:12px;font-weight:900;
     }
-    .pName{ margin: 10px 0 6px; font-weight: 950; font-size: 15px; letter-spacing: -.2px; }
-    .pDesc{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.35; }
-    .pArrow{
-      position:absolute;
-      right: 14px; top: 14px;
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--line);
-      transform: translateZ(0);
+    .pName{margin:10px 0 6px;font-weight:950;font-size:15px;letter-spacing:-.2px}
+    .pDesc{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
+
+    /* Thumbnail "fake print" */
+    .thumb{
+      height:120px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(135deg, rgba(124,156,255,.12), rgba(110,231,183,.08));
+      position:relative;overflow:hidden;
+    }
+    .thumb:before{
+      content:"";position:absolute;inset:-50%;
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 55%);
+      transform:rotate(18deg);
+    }
+    .thumbInner{
+      position:absolute;inset:10px;
+      border-radius:12px;
+      background:rgba(0,0,0,.24);
+      border:1px solid rgba(255,255,255,.08);
+      padding:10px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .miniLine{height:10px;border-radius:999px;background:rgba(255,255,255,.14)}
+    .miniLine.w60{width:60%}
+    .miniLine.w80{width:80%}
+    .miniLine.w40{width:40%}
+    .miniCardRow{display:flex;gap:8px;margin-top:auto}
+    .miniCard{flex:1;height:26px;border-radius:10px;background:rgba(255,255,255,.10)}
+    .thumbTag{
+      position:absolute;right:10px;top:10px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.30);
+      font-size:12px;font-weight:900;color:rgba(255,255,255,.78);
     }
 
+    .pActions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pActions .btn{padding:10px 12px;border-radius:12px;font-size:13px;font-weight:900}
+
     /* Proof */
-    .testiGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    @media (max-width: 900px){
-      .testiGrid{ grid-template-columns: 1fr; }
-    }
+    .testiGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    @media (max-width:900px){.testiGrid{grid-template-columns:1fr}}
     .quote{
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      border-radius: var(--radius);
-      padding: 14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);padding:14px;
     }
-    .quote p{ margin:0; color: rgba(255,255,255,.82); font-size: 13px; line-height: 1.45; }
-    .quote .who{ margin-top: 10px; color: var(--muted); font-weight: 800; font-size: 12px; }
+    .quote p{margin:0;color:rgba(255,255,255,.82);font-size:13px;line-height:1.45}
+    .quote .who{margin-top:10px;color:var(--muted);font-weight:900;font-size:12px}
 
     /* Bottom CTA */
     .ctaBox{
-      display:flex; align-items:center; justify-content:space-between;
-      gap: 12px; flex-wrap: wrap;
-      padding: 14px;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(110,231,183,.20);
-      background: linear-gradient(180deg, rgba(110,231,183,.10), rgba(124,156,255,.08));
+      display:flex;align-items:center;justify-content:space-between;
+      gap:12px;flex-wrap:wrap;padding:14px;
+      border-radius:var(--radius2);
+      border:1px solid rgba(110,231,183,.20);
+      background:linear-gradient(180deg, rgba(110,231,183,.10), rgba(124,156,255,.08));
     }
-    .ctaBox h3{ margin:0; font-size: 16px; font-weight: 950; letter-spacing: -.2px; }
-    .ctaBox p{ margin: 4px 0 0; color: rgba(255,255,255,.80); font-size: 13px; line-height: 1.35; max-width: 66ch; }
+    .ctaBox h3{margin:0;font-size:16px;font-weight:950;letter-spacing:-.2px}
+    .ctaBox p{margin:4px 0 0;color:rgba(255,255,255,.80);font-size:13px;line-height:1.35;max-width:66ch}
 
     /* Floating WhatsApp */
     .waFloat{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 50;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding: 12px 14px;
+      position:fixed;right:16px;bottom:16px;z-index:50;
+      display:flex;align-items:center;gap:10px;
+      padding:12px 14px;border-radius:999px;
+      background:rgba(16,185,129,.18);
+      border:1px solid rgba(16,185,129,.35);
+      backdrop-filter:blur(10px);
+      box-shadow:0 18px 45px rgba(0,0,0,.35);
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .waFloat:hover{transform:translateY(-2px);filter:brightness(1.03)}
+    .waDot{width:12px;height:12px;border-radius:50%;background:#10b981;box-shadow:0 0 0 6px rgba(16,185,129,.18)}
+    .waText{font-weight:950;font-size:13px;color:rgba(255,255,255,.92)}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease}
+    .reveal.show{opacity:1;transform:translateY(0)}
+
+    .muted{color:var(--muted)}
+    .tiny{font-size:12px}
+    .divider{height:1px;background:var(--line);margin:12px 0}
+
+    /* Modal - Mobile preview */
+    .modalOverlay{
+      position:fixed;inset:0;z-index:100;
+      background:rgba(0,0,0,.60);
+      backdrop-filter: blur(6px);
+      display:none;
+      align-items:center;justify-content:center;
+      padding: 18px;
+    }
+    .modalOverlay.open{display:flex}
+    .modal{
+      width:min(980px, 96vw);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(15,20,33,.82);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modalTop{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:10px;flex-wrap:wrap;
+      padding:12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .modalTitle{
+      display:flex;align-items:center;gap:10px;
+      font-weight:950;
+    }
+    .pill{
+      padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      font-size:12px;color:rgba(255,255,255,.80);
+      font-weight:900;
+    }
+    .modalBtns{display:flex;gap:8px;flex-wrap:wrap}
+    .modalBody{
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap: 0;
+      min-height: 520px;
+    }
+    @media (max-width: 900px){
+      .modalBody{grid-template-columns: 1fr}
+    }
+    .modalInfo{
+      padding: 14px;
+      border-left: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    @media (max-width:900px){
+      .modalInfo{border-left:0;border-top:1px solid rgba(255,255,255,.10)}
+    }
+    .infoTitle{margin:0 0 8px;font-weight:950}
+    .infoText{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    .phoneWrap{
+      padding: 16px;
+      display:flex;align-items:center;justify-content:center;
+      background:
+        radial-gradient(900px 500px at 40% 30%, rgba(124,156,255,.18), transparent 60%),
+        rgba(0,0,0,.18);
+    }
+    .phone{
+      width: 290px;
+      height: 560px;
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.55);
+      box-shadow: 0 22px 60px rgba(0,0,0,.55);
+      position:relative;
+      overflow:hidden;
+    }
+    .phone:before{
+      content:"";
+      position:absolute;
+      top:10px; left:50%;
+      width: 110px; height: 22px;
+      transform: translateX(-50%);
       border-radius: 999px;
-      background: rgba(16, 185, 129, .18);
-      border: 1px solid rgba(16, 185, 129, .35);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 18px 45px rgba(0,0,0,.35);
-      transition: transform .15s ease, filter .15s ease;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.10);
+      z-index: 5;
     }
-    .waFloat:hover{ transform: translateY(-2px); filter: brightness(1.03); }
-    .waDot{
-      width: 12px; height: 12px; border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 0 6px rgba(16,185,129,.18);
+    .phone iframe{
+      position:absolute; inset: 42px 10px 10px 10px;
+      width: calc(100% - 20px);
+      height: calc(100% - 52px);
+      border:0; border-radius: 28px;
+      background:#fff;
     }
-    .waText{ font-weight: 950; font-size: 13px; color: rgba(255,255,255,.92); }
+    .kbdHint{
+      margin-top: 10px;
+      font-size:12px;
+      color: rgba(255,255,255,.70);
+    }
+    .kbd{
+      display:inline-block;
+      padding: 3px 7px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      font-weight: 900;
+      margin: 0 4px;
+    }
 
-    /* Animations (JS adds these) */
-    .reveal{
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .55s ease, transform .55s ease;
-    }
-    .reveal.show{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Small helper */
-    .muted{ color: var(--muted); }
-    .tiny{ font-size: 12px; }
-    .divider{ height:1px; background: var(--line); margin: 12px 0; }
+    /* hide items when filtering */
+    .hidden{display:none !important;}
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <!-- Top bar -->
+    <!-- Topbar -->
     <div class="topbar reveal">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <div style="font-size:14px; font-weight:950;">Criador de Landing Pages</div>
+          <div style="font-size:14px;font-weight:950;">Criador de Landing Pages</div>
           <div class="tiny muted">Portfólio • Alta conversão • WhatsApp</div>
         </div>
       </div>
-
       <div class="nav">
         <a class="chip" href="#portfolio">Ver exemplos</a>
         <a class="chip" href="#beneficios">Benefícios</a>
@@ -376,11 +414,7 @@
     <!-- Hero -->
     <div class="hero">
       <div class="heroCard reveal">
-        <div class="kicker">
-          <span class="kickerDot"></span>
-          Landing pages prontas para vender
-        </div>
-
+        <div class="kicker"><span class="kickerDot"></span>Landing pages prontas para vender</div>
         <h1>Criador de landing pages de alta conversão</h1>
         <p class="sub">
           Páginas modernas, rápidas e focadas em cliques no WhatsApp — feitas sob medida para o seu negócio.
@@ -389,20 +423,14 @@
 
         <div class="ctaRow">
           <a class="btn btnPrimary" id="ctaWhatsappTop" href="#" target="_blank" rel="noopener">
-            <span>Quero minha landing page</span>
-            <span aria-hidden="true">↗</span>
+            <span>Quero minha landing page</span><span aria-hidden="true">↗</span>
           </a>
-          <a class="btn" href="#portfolio">
-            <span>Ver portfólio</span>
-            <span aria-hidden="true">↓</span>
-          </a>
-          <button class="btn btnSmall" id="copyLinkBtn" type="button">Copiar link do portfólio</button>
+          <a class="btn" href="#portfolio"><span>Ver portfólio</span><span aria-hidden="true">↓</span></a>
+          <button class="btn btnSmall btnGhost" id="copyLinkBtn" type="button">Copiar link</button>
         </div>
 
         <div class="divider"></div>
-        <div class="tiny muted">
-          ⚡ Mobile-first • 🔒 Visual profissional • 🎯 CTA estratégico • 🚀 Pronto para anúncios
-        </div>
+        <div class="tiny muted">⚡ Mobile-first • 🎯 CTA estratégico • 🚀 Pronto para anúncios • 🧩 Estrutura persuasiva</div>
       </div>
 
       <div class="heroSide">
@@ -426,33 +454,21 @@
       <div class="sectionHeader">
         <div>
           <h2 class="h2">Benefícios que fazem a página converter</h2>
-          <p class="hint">Sem espaços vazios demais — design limpo, mas com densidade e leitura rápida.</p>
+          <p class="hint">Design clean, sem “vazio demais”, com leitura rápida e CTA forte.</p>
         </div>
       </div>
-
       <div class="grid">
         <div class="card reveal">
-          <div class="cardTop">
-            <div class="icon" aria-hidden="true">⚡</div>
-            <p class="cardTitle">Carregamento rápido</p>
-          </div>
-          <p class="cardText">Página leve, objetiva e pronta para celular — menos abandono, mais cliques.</p>
+          <div class="cardTop"><div class="icon" aria-hidden="true">⚡</div><p class="cardTitle">Carregamento rápido</p></div>
+          <p class="cardText">Menos abandono e mais cliques no WhatsApp com página leve e objetiva.</p>
         </div>
-
         <div class="card reveal">
-          <div class="cardTop">
-            <div class="icon" aria-hidden="true">🎯</div>
-            <p class="cardTitle">CTA inteligente</p>
-          </div>
-          <p class="cardText">Botão de WhatsApp estrategicamente posicionado e repetido nos pontos certos.</p>
+          <div class="cardTop"><div class="icon" aria-hidden="true">🎯</div><p class="cardTitle">CTA inteligente</p></div>
+          <p class="cardText">Botões posicionados nos pontos certos para maximizar conversão.</p>
         </div>
-
         <div class="card reveal">
-          <div class="cardTop">
-            <div class="icon" aria-hidden="true">🧩</div>
-            <p class="cardTitle">Estrutura persuasiva</p>
-          </div>
-          <p class="cardText">Headline, benefícios, prova social e oferta clara — sem enrolação.</p>
+          <div class="cardTop"><div class="icon" aria-hidden="true">🧩</div><p class="cardTitle">Estrutura persuasiva</p></div>
+          <p class="cardText">Headline + benefícios + prova social + oferta clara, sem enrolação.</p>
         </div>
       </div>
     </section>
@@ -462,77 +478,227 @@
       <div class="sectionHeader">
         <div>
           <h2 class="h2">Portfólio por segmento</h2>
-          <p class="hint">Clique para abrir a landing page. (Todas hospedadas no GitHub Pages.)</p>
+          <p class="hint">Filtre por categoria e clique para abrir ou ver no celular (modal).</p>
+        </div>
+
+        <div class="filters" aria-label="Filtros do portfólio">
+          <button class="filterBtn active" data-filter="all" type="button">Todos</button>
+          <button class="filterBtn" data-filter="servicos" type="button">Serviços</button>
+          <button class="filterBtn" data-filter="food" type="button">Food</button>
+          <button class="filterBtn" data-filter="varejo" type="button">Varejo</button>
+          <button class="filterBtn" data-filter="beleza" type="button">Beleza</button>
         </div>
       </div>
 
-      <div class="portfolioGrid">
-        <a class="pItem reveal" href="./barbearia.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Serviços</span>
+      <div class="portfolioGrid" id="portfolioGrid">
+        <!-- Item template:
+          data-category="servicos|food|varejo|beleza"
+          data-title="..."
+          data-file="./arquivo.html"
+        -->
+
+        <div class="pItem reveal" data-category="servicos" data-title="Barbearia" data-file="./barbearia.html">
+          <div class="pHead">
+            <span class="pBadge">Serviços</span>
+            <span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true">
+            <div class="thumbInner">
+              <div class="miniLine w80"></div>
+              <div class="miniLine w60"></div>
+              <div class="miniLine w40"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Barbearia</div>
           <p class="pDesc">Agenda rápida, prova social e CTA direto no WhatsApp.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./barbearia.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
 
-        <a class="pItem reveal" href="./chocolateria.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Produtos</span>
+        <div class="pItem reveal" data-category="varejo" data-title="Chocolateria" data-file="./chocolateria.html">
+          <div class="pHead">
+            <span class="pBadge">Varejo</span><span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true" style="background:linear-gradient(135deg, rgba(251,191,36,.16), rgba(124,156,255,.10));">
+            <div class="thumbInner">
+              <div class="miniLine w60"></div>
+              <div class="miniLine w80"></div>
+              <div class="miniLine w40"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Chocolateria</div>
           <p class="pDesc">Destaque de combos, gatilhos de compra e pedido imediato.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./chocolateria.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
 
-        <a class="pItem reveal" href="./cilios.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Beleza</span>
+        <div class="pItem reveal" data-category="beleza" data-title="Cílios" data-file="./cilios.html">
+          <div class="pHead">
+            <span class="pBadge">Beleza</span><span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true" style="background:linear-gradient(135deg, rgba(124,156,255,.14), rgba(236,72,153,.10));">
+            <div class="thumbInner">
+              <div class="miniLine w80"></div>
+              <div class="miniLine w40"></div>
+              <div class="miniLine w60"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Cílios</div>
           <p class="pDesc">Oferta clara, benefícios em cards e agendamento no WhatsApp.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./cilios.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
 
-        <a class="pItem reveal" href="./lanchonete.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Food</span>
+        <div class="pItem reveal" data-category="food" data-title="Lanchonete" data-file="./lanchonete.html">
+          <div class="pHead">
+            <span class="pBadge">Food</span><span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true" style="background:linear-gradient(135deg, rgba(245,158,11,.16), rgba(110,231,183,.10));">
+            <div class="thumbInner">
+              <div class="miniLine w60"></div>
+              <div class="miniLine w80"></div>
+              <div class="miniLine w60"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Lanchonete</div>
           <p class="pDesc">Pedidos rápidos, destaque de itens e CTA forte para conversão.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./lanchonete.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
 
-        <a class="pItem reveal" href="./marcenaria.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Serviços</span>
+        <div class="pItem reveal" data-category="servicos" data-title="Marcenaria" data-file="./marcenaria.html">
+          <div class="pHead">
+            <span class="pBadge">Serviços</span><span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true" style="background:linear-gradient(135deg, rgba(110,231,183,.14), rgba(124,156,255,.10));">
+            <div class="thumbInner">
+              <div class="miniLine w40"></div>
+              <div class="miniLine w80"></div>
+              <div class="miniLine w60"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Marcenaria</div>
           <p class="pDesc">Portfólio, autoridade e captação de orçamento em 1 clique.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./marcenaria.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
 
-        <a class="pItem reveal" href="./oculos.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Varejo</span>
+        <div class="pItem reveal" data-category="varejo" data-title="Óculos" data-file="./oculos.html">
+          <div class="pHead">
+            <span class="pBadge">Varejo</span><span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true" style="background:linear-gradient(135deg, rgba(124,156,255,.14), rgba(251,191,36,.10));">
+            <div class="thumbInner">
+              <div class="miniLine w80"></div>
+              <div class="miniLine w60"></div>
+              <div class="miniLine w40"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Óculos</div>
           <p class="pDesc">Destaque de vantagens e direcionamento para atendimento rápido.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./oculos.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
 
-        <a class="pItem reveal" href="./prestador.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Serviços</span>
+        <div class="pItem reveal" data-category="servicos" data-title="Prestador" data-file="./prestador.html">
+          <div class="pHead">
+            <span class="pBadge">Serviços</span><span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true">
+            <div class="thumbInner">
+              <div class="miniLine w60"></div>
+              <div class="miniLine w40"></div>
+              <div class="miniLine w80"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Prestador</div>
           <p class="pDesc">Proposta direta, prova social e CTA para fechar orçamento.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./prestador.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
 
-        <a class="pItem reveal" href="./restaurante.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Food</span>
+        <div class="pItem reveal" data-category="food" data-title="Restaurante" data-file="./restaurante.html">
+          <div class="pHead">
+            <span class="pBadge">Food</span><span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true" style="background:linear-gradient(135deg, rgba(110,231,183,.14), rgba(245,158,11,.10));">
+            <div class="thumbInner">
+              <div class="miniLine w80"></div>
+              <div class="miniLine w60"></div>
+              <div class="miniLine w40"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Restaurante</div>
           <p class="pDesc">Reservas/pedidos e apresentação completa com alta conversão.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./restaurante.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
 
-        <a class="pItem reveal" href="./revendacelular.html" target="_blank" rel="noopener">
-          <div class="pArrow" aria-hidden="true">↗</div>
-          <span class="pBadge">Varejo</span>
+        <div class="pItem reveal" data-category="varejo" data-title="Revenda de Celular" data-file="./revendacelular.html">
+          <div class="pHead">
+            <span class="pBadge">Varejo</span><span class="thumbTag">Preview</span>
+          </div>
+          <div class="thumb" aria-hidden="true" style="background:linear-gradient(135deg, rgba(124,156,255,.14), rgba(110,231,183,.10));">
+            <div class="thumbInner">
+              <div class="miniLine w60"></div>
+              <div class="miniLine w80"></div>
+              <div class="miniLine w40"></div>
+              <div class="miniCardRow">
+                <div class="miniCard"></div><div class="miniCard"></div><div class="miniCard"></div>
+              </div>
+            </div>
+          </div>
           <div class="pName">Revenda de Celular</div>
           <p class="pDesc">Oferta clara, benefícios e atendimento imediato no WhatsApp.</p>
-        </a>
+          <div class="pActions">
+            <a class="btn btnSmall btnGhost" href="./revendacelular.html" target="_blank" rel="noopener">Abrir</a>
+            <button class="btn btnSmall btnPrimary js-mobile" type="button">Ver no celular</button>
+          </div>
+        </div>
       </div>
 
       <p class="tiny muted" style="margin:12px 0 0;">
-        Dica: quando você fechar com um cliente, você pode clonar um modelo e adaptar em minutos.
+        Dica: quando fechar um cliente, clone um modelo e adapte em minutos.
       </p>
     </section>
 
@@ -541,27 +707,27 @@
       <div class="sectionHeader">
         <div>
           <h2 class="h2">Prova social</h2>
-          <p class="hint">Exemplos (você pode trocar por depoimentos reais quando tiver).</p>
+          <p class="hint">Troque por depoimentos reais assim que tiver.</p>
         </div>
       </div>
 
       <div class="testiGrid">
         <div class="quote reveal">
-          <p>“Depois da landing page, as mensagens no WhatsApp ficaram muito mais qualificadas. Melhorou demais a conversão.”</p>
-          <div class="who">Cliente • Segmento de serviços</div>
+          <p>“Depois da landing page, as mensagens no WhatsApp ficaram mais qualificadas. Melhorou a conversão.”</p>
+          <div class="who">Cliente • Serviços</div>
         </div>
         <div class="quote reveal">
-          <p>“A página ficou rápida e bonita no celular. Em campanha, fez muita diferença no custo por mensagem.”</p>
+          <p>“Ficou rápida e bonita no celular. Em campanha, ajudou muito no custo por mensagem.”</p>
           <div class="who">Cliente • Negócio local</div>
         </div>
         <div class="quote reveal">
-          <p>“Curto, direto e com CTA no lugar certo. Era exatamente o que eu precisava para começar a anunciar.”</p>
+          <p>“Curto, direto e com CTA no lugar certo. Era isso que eu precisava pra anunciar.”</p>
           <div class="who">Cliente • Varejo</div>
         </div>
       </div>
     </section>
 
-    <!-- Bottom CTA -->
+    <!-- CTA -->
     <section class="section reveal" id="contato">
       <div class="ctaBox">
         <div>
@@ -570,8 +736,7 @@
           <p class="tiny muted" style="margin-top:8px;">✅ Headline • Benefícios • Provas • CTA forte • Mobile-first</p>
         </div>
         <a class="btn btnPrimary" id="ctaWhatsappBottom" href="#" target="_blank" rel="noopener">
-          <span>Falar no WhatsApp</span>
-          <span aria-hidden="true">↗</span>
+          <span>Falar no WhatsApp</span><span aria-hidden="true">↗</span>
         </a>
       </div>
     </section>
@@ -586,6 +751,48 @@
     <span class="waText">WhatsApp</span>
   </a>
 
+  <!-- Modal -->
+  <div class="modalOverlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modalTop">
+        <div class="modalTitle">
+          <span id="modalTitle">Prévia no celular</span>
+          <span class="pill" id="modalPill">—</span>
+        </div>
+        <div class="modalBtns">
+          <a class="btn btnSmall btnGhost" id="modalOpenNew" href="#" target="_blank" rel="noopener">Abrir em nova aba</a>
+          <button class="btn btnSmall" id="modalCopyLink" type="button">Copiar link</button>
+          <button class="btn btnSmall btnPrimary" id="modalClose" type="button">Fechar</button>
+        </div>
+      </div>
+
+      <div class="modalBody">
+        <div class="phoneWrap">
+          <div>
+            <div class="phone" aria-label="Prévia no celular">
+              <iframe id="modalFrame" title="Prévia da landing page"></iframe>
+            </div>
+            <div class="kbdHint">
+              Dica: pressione <span class="kbd">Esc</span> para fechar.
+            </div>
+          </div>
+        </div>
+
+        <div class="modalInfo">
+          <p class="infoTitle">Por que “ver no celular” ajuda a vender?</p>
+          <p class="infoText">
+            A maioria dos clientes vai abrir a página no telefone. Esse preview acelera a decisão e aumenta confiança.
+            Use isso em reuniões rápidas e no WhatsApp.
+          </p>
+          <div class="divider"></div>
+          <p class="infoText tiny muted">
+            Se alguma página bloquear no iframe (raríssimo em HTML simples), use “Abrir em nova aba”.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ✅ CONFIG: coloque seu WhatsApp aqui (com DDI e DDD, sem +, sem espaços)
     const WHATSAPP_NUMBER = "5511999999999"; // <-- troque
@@ -596,6 +803,7 @@
       return `https://wa.me/${number}?text=${text}`;
     }
 
+    // WhatsApp links
     const waLink = buildWhatsAppLink(WHATSAPP_NUMBER, DEFAULT_MSG);
     document.getElementById("ctaWhatsappTop").href = waLink;
     document.getElementById("ctaWhatsappBottom").href = waLink;
@@ -617,7 +825,7 @@
       }
     });
 
-    // ✅ Animações JS (Intersection Observer)
+    // Reveal animations
     const items = document.querySelectorAll(".reveal");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -627,8 +835,97 @@
         }
       });
     }, { threshold: 0.12 });
-
     items.forEach(el => io.observe(el));
+
+    // Filtering
+    const filterButtons = document.querySelectorAll(".filterBtn");
+    const portfolioItems = document.querySelectorAll(".pItem");
+
+    function setActive(btn){
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    function applyFilter(filter){
+      portfolioItems.forEach(item => {
+        const cat = item.getAttribute("data-category");
+        if(filter === "all" || cat === filter) item.classList.remove("hidden");
+        else item.classList.add("hidden");
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const filter = btn.getAttribute("data-filter");
+        setActive(btn);
+        applyFilter(filter);
+      });
+    });
+
+    // Modal "Ver no celular"
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalFrame = document.getElementById("modalFrame");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalPill = document.getElementById("modalPill");
+    const modalOpenNew = document.getElementById("modalOpenNew");
+    const modalCopyLink = document.getElementById("modalCopyLink");
+    const modalClose = document.getElementById("modalClose");
+
+    function openModal(title, category, file){
+      modalTitle.textContent = `Prévia no celular • ${title}`;
+      modalPill.textContent = category.toUpperCase();
+      modalOpenNew.href = file;
+
+      // Carregar no iframe (funciona para HTML simples)
+      modalFrame.src = file;
+
+      modalOverlay.classList.add("open");
+      modalOverlay.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+
+      // Guardar o link atual
+      modalCopyLink.dataset.link = new URL(file, window.location.href).toString();
+    }
+
+    function closeModal(){
+      modalOverlay.classList.remove("open");
+      modalOverlay.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+      // Limpa o iframe para parar carregamentos
+      modalFrame.src = "about:blank";
+    }
+
+    document.querySelectorAll(".js-mobile").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const item = e.target.closest(".pItem");
+        const title = item.getAttribute("data-title");
+        const category = item.getAttribute("data-category");
+        const file = item.getAttribute("data-file");
+        openModal(title, category, file);
+      });
+    });
+
+    modalClose.addEventListener("click", closeModal);
+
+    modalOverlay.addEventListener("click", (e) => {
+      if(e.target === modalOverlay) closeModal();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modalOverlay.classList.contains("open")) closeModal();
+    });
+
+    modalCopyLink.addEventListener("click", async () => {
+      const link = modalCopyLink.dataset.link || window.location.href;
+      try{
+        await navigator.clipboard.writeText(link);
+        const old = modalCopyLink.textContent;
+        modalCopyLink.textContent = "Copiado ✅";
+        setTimeout(()=> modalCopyLink.textContent = old, 1200);
+      }catch(e){
+        alert("Não consegui copiar automaticamente. Copie manualmente o link.");
+      }
+    });
   </script>
 </body>
 </html>
