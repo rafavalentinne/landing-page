@@ -57,7 +57,20 @@
         }
         .float-wa:hover { transform: scale(1.1); }
 
-        /* --- HERO SECTION (CORRIGIDO) --- */
+        /* --- BARRA DE STATUS (URGÊNCIA) --- */
+        .top-bar {
+            background-color: var(--accent-green);
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* --- HERO SECTION (COM FOTO DE FUNDO) --- */
         header {
             position: relative;
             height: 90vh;
@@ -68,53 +81,48 @@
             text-align: center;
             color: #fff;
             overflow: hidden;
-            background-color: #3E2723; /* Fallback se a imagem não carregar */
-        }
-
-        /* Elemento de fundo separado para aplicar o blur */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            
-            /* IMAGEM: Pratos rústicos / Madeira escura */
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
-                              url('https://images.unsplash.com/photo-1544510802-5c4be67468d6?q=80&w=1920&auto=format&fit=crop');
-            
+            /* FOTO DA MESA NORDESTINA + Gradiente Escuro para leitura */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            
-            /* Efeito de Desfoque */
-            filter: blur(8px);
-            
-            /* Escala para evitar bordas brancas causadas pelo blur */
-            transform: scale(1.1);
+            /* Efeito Parallax no Desktop */
+            background-attachment: fixed;
+        }
+
+        /* Ajuste para mobile (Parallax pode bugar) */
+        @media (max-width: 768px) {
+            header { background-attachment: scroll; }
         }
 
         .hero-content {
             position: relative;
-            z-index: 2; /* Texto fica na frente do fundo */
+            z-index: 2; 
             max-width: 800px;
             padding: 20px;
         }
 
         .hero-tag {
-            background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(5px);
             padding: 8px 16px; border-radius: 30px; text-transform: uppercase; letter-spacing: 2px;
-            font-size: 0.8rem; display: inline-block; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.4);
+            font-size: 0.8rem; display: inline-block; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.3);
         }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        
+        .hero h1 { 
+            font-size: 3.5rem; margin-bottom: 20px; 
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8); 
+        }
 
         .hero p { 
-            font-size: 1.2rem; 
-            margin-bottom: 200px;
+            font-size: 1.25rem; 
+            margin-bottom: 40px;
             opacity: 0.95; 
             font-weight: 400; 
-            text-shadow: 0 1px 5px rgba(0,0,0,0.5); 
-            }
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8); 
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         /* --- SEÇÕES GERAIS --- */
         section { padding: 80px 0; }
@@ -153,9 +161,20 @@
         .review-text { font-style: italic; opacity: 0.9; margin-bottom: 15px; }
         .client { font-weight: 700; color: #fff; }
 
+        /* --- FAQ --- */
+        .faq-section { background-color: var(--bg-white); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        details { background: var(--bg-sand); margin-bottom: 15px; border-radius: var(--radius); overflow: hidden; }
+        summary { padding: 20px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; align-items: center; list-style: none; color: var(--primary-dark); }
+        summary::after { content: '+'; color: var(--primary-terracotta); font-size: 1.5rem; }
+        details[open] summary::after { content: '-'; }
+        .faq-ans { padding: 0 20px 20px 20px; color: var(--text-main); }
+
         /* --- FOOTER --- */
         footer { background: #1A1A1A; color: #888; padding: 50px 0; text-align: center; }
+        footer h3 { color: #fff; margin-bottom: 20px; }
         footer p { font-size: 0.9rem; margin-bottom: 10px; }
+        .payment-icons { font-size: 2rem; margin: 20px 0; display: flex; justify-content: center; gap: 15px; }
 
         /* --- ANIMAÇÕES --- */
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
@@ -173,17 +192,24 @@
 </head>
 <body>
 
-<header>
-        <div class="hero-bg"></div>
-        
+    <div class="top-bar">
+        🟢 Aberto Agora! Entregas em 40min para toda a região.
+    </div>
+
+    <header>
         <div class="hero-content reveal">
             <span class="hero-tag">Tradição & Afeto</span>
             <h1>O Verdadeiro Sabor do <br>Nordeste na Sua Mesa</h1>
-            <p>Ingredientes autênticos, receitas de família e aquele tempero arretado que aquece o coração. Venha viver essa experiência.</p>
+            <p>Ingredientes autênticos, receitas de família e aquele tempero arretado que aquece o coração. Venha viver essa experiência ou peça em casa.</p>
             
-            <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20reservar%20uma%20mesa." class="btn-main" style="margin-top: 30px;">
-                Reservar Mesa
-            </a>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="https://wa.me/5500000000000?text=Olá,%20gostaria%20de%20reservar%20uma%20mesa." class="btn-main">
+                    Reservar Mesa
+                </a>
+                <a href="https://wa.me/5500000000000?text=Olá,%20quero%20fazer%20um%20pedido%20delivery." class="btn-main" style="background-color: var(--accent-green); border-color: var(--accent-green);">
+                    Pedir Delivery
+                </a>
+            </div>
         </div>
     </header>
 
@@ -246,6 +272,7 @@
                         <li>Ingredientes 100% autênticos</li>
                         <li>Ambiente climatizado e aconchegante</li>
                         <li>Carta de Cachaças Artesanais</li>
+                        <li>Aceitamos Vale Refeição</li>
                     </ul>
                 </div>
                 <div class="about-img-col reveal">
@@ -282,6 +309,31 @@
         </div>
     </section>
 
+    <section class="faq-section">
+        <div class="container faq-container reveal">
+            <div class="section-header text-center">
+                <h2>Dúvidas Frequentes</h2>
+            </div>
+            
+            <details>
+                <summary>Aceitam Vale Refeição?</summary>
+                <div class="faq-ans">Sim! Aceitamos Alelo, Sodexo, Ticket e VR (Refeição).</div>
+            </details>
+            <details>
+                <summary>Precisa reservar mesa?</summary>
+                <div class="faq-ans">Recomendamos reservar aos finais de semana. Durante a semana é por ordem de chegada.</div>
+            </details>
+            <details>
+                <summary>Fazem entrega?</summary>
+                <div class="faq-ans">Sim! Entregamos em um raio de 7km. Pedidos pelo WhatsApp ou iFood.</div>
+            </details>
+            <details>
+                <summary>Tem estacionamento?</summary>
+                <div class="faq-ans">Temos convênio com estacionamento ao lado e serviço de vallet na porta.</div>
+            </details>
+        </div>
+    </section>
+
     <section class="history-section bg-white">
         <div class="container">
             <div class="two-col-grid">
@@ -303,12 +355,23 @@
         </div>
     </section>
 
+    <div class="bg-sand text-center" style="padding: 60px 0;">
+        <div class="container">
+            <h2>Visite-nos</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.2889392237077!2d-46.6623634!3d-23.5580667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59cd33e8139f%3A0x6b4763137e0964e0!2sR.%20Augusta%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1689260000000!5m2!1spt-BR!2sbr" width="100%" height="400" style="border:0; border-radius: 12px; margin-top: 20px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
-            <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 20px;">Mandacaru Sabores</h3>
+            <h3>Mandacaru Sabores</h3>
             <p>Rua das Acácias, 123 - Jardins, São Paulo</p>
             <p>(11) 99999-9999 | contato@mandacaru.com.br</p>
-            <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">&copy; 2024 Mandacaru Sabores. Todos os direitos reservados.</p>
+            <div class="payment-icons">
+                <span>💳</span> <span>💵</span> <span>📱</span>
+            </div>
+            <p style="font-size: 0.8rem;">Aceitamos: VR, Sodexo, Alelo, Pix e Crédito.</p>
+            <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">© 2024 Mandacaru Sabores. Todos os direitos reservados.</p>
         </div>
     </footer>
 

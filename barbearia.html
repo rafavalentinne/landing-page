@@ -1,39 +1,60 @@
-<!DOCTYPE html>
+=<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbearia Imperador | O Corte de Respeito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- Variáveis e Reset --- */
+        /* --- CSS OTIMIZADO PARA CONVERSÃO --- */
         :root {
             --bg-dark: #121212;
             --bg-card: #1e1e1e;
-            --text-main: #e0e0e0;
+            --text-main: #f5f5f5;
             --text-muted: #a0a0a0;
-            --accent-gold: #D4AF37; /* Dourado Clássico */
-            --accent-hover: #b59020;
-            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --accent-gold: #D4AF37;
+            --accent-hover: #F2C94C;
+            --whatsapp-green: #25D366;
+            --font-title: 'Oswald', sans-serif;
+            --font-body: 'Roboto', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: var(--font-main);
+            font-family: var(--font-body);
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        h1, h2, h3 { color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        h1, h2, h3 { 
+            font-family: var(--font-title); 
+            color: #fff; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
 
-        /* --- Utilitários --- */
         .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 60px 0; }
         .text-center { text-align: center; }
         .highlight { color: var(--accent-gold); }
 
-        /* --- Botão CTA --- */
+        /* --- Barra de Urgência --- */
+        .top-bar {
+            background-color: var(--accent-gold);
+            color: #000;
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* --- Botão CTA Principal --- */
         .btn-cta {
             display: inline-block;
             background-color: var(--accent-gold);
@@ -46,24 +67,27 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             margin-top: 30px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            font-family: var(--font-title);
+            font-size: 1.2rem;
         }
 
         .btn-cta:hover {
             background-color: var(--accent-hover);
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
         }
 
-        /* --- Header / Hero --- */
+        /* --- Header / Hero COM FOTO DO SERVIÇO CORRIGIDA --- */
         header {
             height: 100vh;
             min-height: 600px;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1200&auto=format&fit=crop&q=80');
+            /* Foto de um barbeiro trabalhando com filtro escuro por cima */
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), 
+                              url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efeito Parallax simples */
+            background-attachment: fixed; /* Efeito Parallax */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -71,28 +95,49 @@
             position: relative;
         }
 
-        .hero-content {
-            z-index: 2;
-            padding: 20px;
+        /* Fallback para mobile onde background-attachment: fixed pode bugar */
+        @media (max-width: 768px) {
+            header {
+                background-attachment: scroll;
+            }
         }
 
-        .hero-title {
-            font-size: 3rem;
+        .hero-content { z-index: 2; padding: 20px; max-width: 800px; }
+        .hero-title { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
+        .hero-subtitle { font-size: 1.2rem; color: #ddd; margin: 0 auto; margin-bottom: 10px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        
+        .badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--accent-gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            display: inline-block;
             margin-bottom: 20px;
-            font-weight: 900;
+            backdrop-filter: blur(5px);
         }
 
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
+        /* --- Tabela de Preços (Menu) --- */
+        .price-list { margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #333;
+            transition: background 0.3s;
         }
+        .price-item:hover { background: #1a1a1a; }
+        .service-name { font-weight: bold; font-size: 1.2rem; display: block; }
+        .service-desc { font-size: 0.9rem; color: var(--text-muted); }
+        .service-price { font-family: var(--font-title); color: var(--accent-gold); font-size: 1.5rem; font-weight: bold; }
 
         /* --- Benefícios (Cards) --- */
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
@@ -102,179 +147,297 @@
             padding: 40px 20px;
             border-bottom: 3px solid var(--accent-gold);
             transition: transform 0.3s ease;
+            border-radius: 8px;
         }
-
-        .benefit-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-        }
+        .benefit-card:hover { transform: translateY(-10px); }
+        .icon { font-size: 3rem; margin-bottom: 20px; display: block; }
 
         /* --- Prova Social --- */
-        .social-proof {
-            background-color: #0f0f0f;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-
+        .social-proof { background-color: #0f0f0f; padding: 80px 0; }
         .testimonial {
             background: var(--bg-card);
             padding: 30px;
-            margin: 15px;
             border-radius: 8px;
             font-style: italic;
+            border: 1px solid #333;
         }
+        .stars { color: var(--accent-gold); margin-bottom: 10px; display: block; letter-spacing: 3px; }
+        .testimonial strong { display: block; margin-top: 15px; color: #fff; font-style: normal; font-family: var(--font-title); }
 
-        .testimonial strong {
-            display: block;
-            margin-top: 15px;
-            color: var(--accent-gold);
-            font-style: normal;
+        /* --- FAQ --- */
+        .faq-section { background-color: var(--bg-dark); }
+        details {
+            background: var(--bg-card);
+            margin-bottom: 10px;
+            border-radius: 5px;
+            overflow: hidden;
         }
+        summary {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::after { content: '+'; color: var(--accent-gold); font-size: 1.5rem; }
+        details[open] summary::after { content: '-'; }
+        .faq-answer { padding: 0 20px 20px 20px; color: var(--text-muted); font-size: 0.95rem; }
 
         /* --- Localização --- */
-        .location {
-            text-align: center;
-        }
         .map-frame {
             width: 100%;
-            height: 350px;
+            height: 400px;
             border: 0;
-            filter: grayscale(100%) invert(92%) contrast(83%); /* Mapa estilo Dark */
+            filter: grayscale(100%) invert(92%) contrast(83%);
             border-radius: 8px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         /* --- Footer --- */
         footer {
             text-align: center;
             padding: 40px;
-            background-color: #000;
+            background-color: #050505;
             font-size: 0.9rem;
             color: #666;
+            border-top: 1px solid #222;
         }
 
-        /* --- ANIMAÇÕES (CSS + JS) --- */
+        /* --- Botão Flutuante WhatsApp --- */
+        .floating-wpp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--whatsapp-green);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .floating-wpp:hover { transform: scale(1.1); }
+        .wpp-icon { width: 35px; height: 35px; fill: white; }
         
-        /* Estado inicial dos elementos animados: invisível e deslocado para baixo */
+        .wpp-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* --- ANIMAÇÕES --- */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-
-        /* Estado final: visível e na posição original */
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Atraso para elementos em grid (efeito cascata) */
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
         .delay-100 { transition-delay: 0.1s; }
         .delay-200 { transition-delay: 0.2s; }
         .delay-300 { transition-delay: 0.3s; }
 
-        /* Responsividade */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.2rem; }
-            .container { padding: 40px 0; }
+            .hero-title { font-size: 2.5rem; }
+            .service-price { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
+    <div class="top-bar">
+        ⚠️ Poucos horários disponíveis para esta semana!
+    </div>
+
     <header>
         <div class="hero-content">
-            <h1 class="hero-title animate-on-scroll">Estilo, Tradição e <br><span class="highlight">Cerveja Gelada</span></h1>
-            <p class="hero-subtitle animate-on-scroll">Não é apenas um corte, é o seu momento. Barba, cabelo e bigode com a técnica clássica que você respeita.</p>
+            <span class="badge animate-on-scroll">Barbearia Premium em São Paulo</span>
+            <h1 class="hero-title animate-on-scroll">O Visual de Respeito <br><span class="highlight">Que Você Merece</span></h1>
+            <p class="hero-subtitle animate-on-scroll">Cerveja gelada, toalha quente e a técnica clássica que transforma seu estilo.</p>
             
-            <a href="https://wa.me/5511999999999?text=Opa,%20gostaria%20de%20agendar%20um%20horário." class="btn-cta animate-on-scroll">
-                Agendar Horário
+            <a href="#" onclick="openWhatsApp('Hero')" class="btn-cta animate-on-scroll">
+                ✂️ Quero dar um tapa no visual
             </a>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #aaa;" class="animate-on-scroll">⭐ 4.9/5 em avaliações no Google</p>
         </div>
     </header>
 
     <section class="container">
-        <div class="text-center">
-            <h2 class="animate-on-scroll">A Experiência Imperador</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;" class="animate-on-scroll">Porque você merece mais do que um corte rápido de 15 minutos.</p>
+        <div class="text-center animate-on-scroll">
+            <h2>Nossos Serviços</h2>
+            <p style="color: var(--text-muted);">Transparência total. Sem surpresas na hora de pagar.</p>
         </div>
 
-        <div class="benefits-grid">
-            <div class="benefit-card text-center animate-on-scroll delay-100">
-                <span class="icon">✂️</span>
-                <h3>Corte de Precisão</h3>
-                <p>Barbeiros experientes especialistas em degradê, tesoura e visagismo masculino.</p>
+        <div class="price-list animate-on-scroll delay-100">
+            <div class="price-item">
+                <div>
+                    <span class="service-name">Corte Clássico / Degradê</span>
+                    <span class="service-desc">Lavagem + Corte + Finalização</span>
+                </div>
+                <span class="service-price">R$ 50,00</span>
             </div>
-            <div class="benefit-card text-center animate-on-scroll delay-200">
-                <span class="icon">🍺</span>
-                <h3>Primeira Cerveja Grátis</h3>
-                <p>Relaxe. Enquanto cuidamos do seu visual, a primeira Heineken é por nossa conta.</p>
+            <div class="price-item">
+                <div>
+                    <span class="service-name">Barba Terapia</span>
+                    <span class="service-desc">Toalha quente + Esfoliação + Hidratação</span>
+                </div>
+                <span class="service-price">R$ 40,00</span>
             </div>
-            <div class="benefit-card text-center animate-on-scroll delay-300">
-                <span class="icon">🔥</span>
-                <h3>Toalha Quente</h3>
-                <p>O ritual clássico de barboterapia. Toalha quente e navalha afiada para uma barba perfeita.</p>
+            <div class="price-item" style="border-left: 4px solid var(--accent-gold); background: #1a1a1a;">
+                <div>
+                    <span class="service-name highlight">Combo Imperador</span>
+                    <span class="service-desc">Cabelo + Barba + Sobrancelha + 1ª Cerveja</span>
+                </div>
+                <span class="service-price">R$ 80,00</span>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <a href="#" onclick="openWhatsApp('Tabela de Precos')" class="btn-cta animate-on-scroll">
+                Agendar Agora
+            </a>
+        </div>
+    </section>
+
+    <section class="container" style="background: #151515; width: 100%; max-width: 100%;">
+        <div class="container">
+            <div class="text-center animate-on-scroll">
+                <h2>A Experiência Imperador</h2>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card text-center animate-on-scroll delay-100">
+                    <span class="icon">🍺</span>
+                    <h3>Happy Hour Incluso</h3>
+                    <p>Relaxe. A primeira Heineken ou café expresso é por nossa conta enquanto você espera.</p>
+                </div>
+                <div class="benefit-card text-center animate-on-scroll delay-200">
+                    <span class="icon">⚔️</span>
+                    <h3>Técnica Clássica</h3>
+                    <p>Nossos barbeiros são mestres na tesoura e na navalha. Nada de cortes apressados.</p>
+                </div>
+                <div class="benefit-card text-center animate-on-scroll delay-300">
+                    <span class="icon">🎮</span>
+                    <h3>Ambiente Man Cave</h3>
+                    <p>TV com esportes, video-game e ar condicionado no talo. O refúgio que você precisa.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="social-proof">
         <div class="container">
-            <h2 class="text-center animate-on-scroll">O que dizem no bairro</h2>
+            <h2 class="text-center animate-on-scroll">Quem sentou na cadeira aprovou</h2>
             <div class="benefits-grid">
                 <div class="testimonial animate-on-scroll delay-100">
-                    <p>"Melhor degradê da região. O ambiente é sensacional, você entra e esquece dos problemas."</p>
+                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                    <p>"Melhor degradê da região. O ambiente é sensacional, você entra e esquece dos problemas do dia a dia."</p>
                     <strong>— Marcos V.</strong>
                 </div>
                 <div class="testimonial animate-on-scroll delay-200">
-                    <p>"Atendimento de primeira. Marquei pelo WhatsApp, cheguei e fui atendido na hora. Recomendo."</p>
+                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                    <p>"Fiz o pacote do noivo com meus padrinhos. Atendimento de primeira classe. Recomendo de olhos fechados."</p>
                     <strong>— André L.</strong>
                 </div>
-            </div>
-            <div class="text-center">
-                <a href="https://wa.me/5511999999999" class="btn-cta animate-on-scroll">Quero ser atendido</a>
+                <div class="testimonial animate-on-scroll delay-300">
+                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                    <p>"Preço justo pelo serviço que entregam. A toalha quente na barba é coisa de outro mundo."</p>
+                    <strong>— Felipe S.</strong>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="location container animate-on-scroll">
-        <h2>Onde Estamos</h2>
-        <p style="color: var(--text-muted); margin-bottom: 20px;">Rua Augusta, 000 - São Paulo, SP</p>
+    <section class="container faq-section animate-on-scroll">
+        <h2 class="text-center" style="margin-bottom: 30px;">Dúvidas Frequentes</h2>
         
-        <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.2889392237077!2d-46.6623634!3d-23.5580667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59cd33e8139f%3A0x6b4763137e0964e0!2sR.%20Augusta%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1689260000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+        <details>
+            <summary>Preciso agendar ou posso só chegar?</summary>
+            <div class="faq-answer">Recomendamos agendar pelo WhatsApp para garantir que você não pegue fila, mas atendemos encaixes se houver disponibilidade.</div>
+        </details>
+        <details>
+            <summary>Aceitam quais formas de pagamento?</summary>
+            <div class="faq-answer">Aceitamos Cartão de Crédito, Débito, PIX e Dinheiro.</div>
+        </details>
+        <details>
+            <summary>Vocês atendem crianças?</summary>
+            <div class="faq-answer">Sim! Nossos barbeiros têm paciência e técnica para deixar os pequenos no estilo.</div>
+        </details>
+        <details>
+            <summary>Tem estacionamento?</summary>
+            <div class="faq-answer">Sim, temos vagas na frente e convênio com estacionamento ao lado.</div>
+        </details>
+    </section>
+
+    <section class="location container animate-on-scroll">
+        <div class="text-center">
+            <h2>Onde Estamos</h2>
+            <p style="color: var(--text-muted);">Rua Augusta, 1500 - São Paulo, SP</p>
+            <a href="#" onclick="openWhatsApp('Localizacao')" style="color: var(--accent-gold); text-decoration: none; font-weight: bold;">Ver no GPS →</a>
+        </div>
+        
+        <iframe class="map-frame" src="https://maps.google.com/maps?q=Rua+Augusta+1500+São+Paulo&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
     </section>
 
     <footer>
-        <p>Barbearia Imperador © 2024. Todos os direitos reservados.</p>
-        <p>Estilo e Tradição desde 2015.</p>
+        <p>Barbearia Imperador © 2024</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #444;">Desenvolvido para converter.</p>
+        <p style="margin-top: 20px;">
+            Horário: Seg a Sex (09h - 20h) | Sáb (09h - 18h)
+        </p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Selecionar todos os elementos que devem ser animados
-            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+    <a href="#" onclick="openWhatsApp('Botao Flutuante')" class="floating-wpp" title="Agendar Horário">
+        <div class="wpp-badge">1</div>
+        <svg class="wpp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
 
-            // 2. Configurar o "Observador" (Intersection Observer)
-            // Ele vigia quando os elementos entram na tela
+    <script>
+        // Função de Abertura do WhatsApp com Mensagem Inteligente
+        function openWhatsApp(origem) {
+            // SUBSTITUA PELO SEU NÚMERO
+            const phone = "5511999999999"; 
+            
+            let message = "Olá! Vi o site da Imperador e gostaria de agendar um horário.";
+            
+            // Personaliza a mensagem se vier da tabela de preços
+            if(origem === 'Tabela de Precos') {
+                message = "Opa! Vi os preços no site e quero agendar um serviço.";
+            }
+
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Animação ao rolar (Scroll)
+        document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    // Se o elemento estiver visível na tela
                     if (entry.isIntersecting) {
-                        // Adiciona a classe .visible que dispara o CSS
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.1 // Dispara quando 10% do elemento estiver visível
-            });
+            }, { threshold: 0.1 });
 
-            // 3. Mandar o observador vigiar cada elemento
-            elementsToAnimate.forEach(element => {
+            document.querySelectorAll('.animate-on-scroll').forEach(element => {
                 observer.observe(element);
             });
         });

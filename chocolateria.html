@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChocoMadrid | A Arte do Churros Artesanal</title>
+    <title>ChocoMadrid | O Melhor Churros Artesanal</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +12,15 @@
     <style>
         /* --- 1. Paleta de Cores de Luxo --- */
         :root {
-            --bg-dark: #1A120B; /* Café quase preto */
-            --bg-panel: #2B2118; /* Chocolate amargo */
-            --text-gold: #E5C39C; /* Creme Dourado */
-            --text-light: #F3E5D8; /* Espuma de leite */
-            --accent: #D98829; /* Cor do Churro Frito */
+            --bg-dark: #1A120B;
+            --bg-panel: #2B2118;
+            --text-gold: #E5C39C;
+            --text-light: #F3E5D8;
+            --accent: #D98829;
+            --whatsapp: #25D366;
             
             --font-title: 'Cormorant Garamond', serif;
             --font-body: 'Montserrat', sans-serif;
-            
-            --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         /* --- Reset & Base --- */
@@ -40,45 +39,65 @@
         a { text-decoration: none; transition: 0.3s; }
 
         /* --- Utilitários --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
         .text-center { text-align: center; }
         .gold-text { color: var(--text-gold); }
+        .bg-panel { background-color: var(--bg-panel); }
         
-        /* Efeito de textura granulada no fundo para tirar o aspecto "liso/amador" */
         .texture-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none; z-index: 99; opacity: 0.4;
         }
 
+        /* --- Barra de Urgência --- */
+        .top-bar {
+            background-color: var(--accent);
+            color: #fff;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 100;
+        }
+
         /* --- Botão Premium --- */
         .btn-gold {
             display: inline-flex; align-items: center; justify-content: center;
-            padding: 18px 45px;
+            padding: 16px 40px;
             background: linear-gradient(135deg, #D98829, #B86E18);
             color: white;
             border-radius: 50px;
             text-transform: uppercase;
             font-size: 0.9rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             box-shadow: 0 10px 30px rgba(217, 136, 41, 0.2);
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
         }
-
-        .btn-gold::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
-        }
-        .btn-gold:hover::before { left: 100%; }
         .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(217, 136, 41, 0.4); }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .btn-outline:hover { background: var(--accent); color: #fff; }
 
         /* --- HERO SECTION --- */
         header {
             height: 100vh;
+            min-height: 600px;
             position: relative;
             display: flex;
             align-items: center;
@@ -86,7 +105,6 @@
             overflow: hidden;
         }
 
-        /* Vídeo ou Imagem de Fundo com Zoom Lento */
         .hero-bg {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://images.unsplash.com/photo-1614145121029-83a9f7b68bf4?q=80&w=1974&auto=format&fit=crop') center/cover;
@@ -94,103 +112,129 @@
         }
         .hero-overlay {
             position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(26,18,11,0.3), rgba(26,18,11,0.9));
+            background: linear-gradient(to bottom, rgba(26,18,11,0.4), rgba(26,18,11,0.95));
         }
 
         .hero-content {
             position: relative; z-index: 3; text-align: center; max-width: 800px;
             padding: 40px;
             border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(43, 33, 24, 0.6); /* Glassmorphism Dark */
-            backdrop-filter: blur(10px);
-            border-radius: 0; /* Bordas retas são mais elegantes aqui ou levemente curvas */
+            background: rgba(43, 33, 24, 0.6);
+            backdrop-filter: blur(8px);
         }
 
-        .hero h1 { font-size: 4rem; color: #fff; margin-bottom: 20px; font-style: italic; }
-        .hero p { font-size: 1.3rem; margin-bottom: 40px; font-weight: 300; opacity: 0.9; }
+        .hero h1 { font-size: 3.5rem; color: #fff; margin-bottom: 20px; font-style: italic; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; opacity: 0.9; }
 
-        /* --- "MELTING" DIVIDER (Onda de Chocolate) --- */
+        /* --- "MELTING" DIVIDER --- */
         .melt-divider {
             position: absolute; bottom: -2px; left: 0; width: 100%;
             line-height: 0; fill: var(--bg-dark); z-index: 4;
         }
 
-        /* --- MENU EM ZIG-ZAG (Quebra o padrão chato) --- */
-        .menu-section { padding: 100px 0; }
+        /* --- MENU EM ZIG-ZAG --- */
+        .menu-section { padding: 80px 0; }
         
         .menu-item {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-            align-items: center; margin-bottom: 100px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
+            align-items: center; margin-bottom: 80px;
         }
-
-        /* Inverte a ordem para o segundo item */
         .menu-item.reverse .item-img { order: 2; }
         .menu-item.reverse .item-text { order: 1; text-align: right; }
 
         .item-img {
-            height: 500px; position: relative; border-radius: 200px 200px 0 0; /* Formato arco */
-            overflow: hidden;
+            height: 400px; position: relative; border-radius: 150px 150px 0 0;
+            overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .item-img img { transition: transform 0.8s ease; }
         .item-img:hover img { transform: scale(1.1); }
         
-        /* Detalhe flutuante na imagem */
-        .floating-badge {
-            position: absolute; bottom: 30px; right: 30px;
-            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-            padding: 15px 25px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2);
-            color: var(--accent); font-weight: 700; font-family: var(--font-title); font-size: 1.5rem;
+        .floating-price {
+            position: absolute; bottom: 20px; right: 20px;
+            background: rgba(26, 18, 11, 0.9);
+            padding: 10px 20px; border-radius: 30px;
+            color: var(--accent); font-weight: 700; font-family: var(--font-title); font-size: 1.3rem;
+            border: 1px solid var(--accent);
         }
 
-        .item-text h3 { font-size: 3rem; color: var(--text-gold); margin-bottom: 20px; }
-        .item-text p { font-size: 1.1rem; color: #ccc; margin-bottom: 30px; line-height: 1.8; }
+        .item-text h3 { font-size: 2.5rem; color: var(--text-gold); margin-bottom: 15px; }
+        .item-text p { font-size: 1rem; color: #ccc; margin-bottom: 20px; line-height: 1.6; }
         
-        .ingredient-list {
-            display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 30px;
-        }
-        .menu-item.reverse .ingredient-list { justify-content: flex-end; }
+        .tag-container { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
+        .menu-item.reverse .tag-container { justify-content: flex-end; }
         
         .tag {
-            border: 1px solid var(--text-gold); padding: 5px 15px;
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+            border: 1px solid rgba(229, 195, 156, 0.3); padding: 4px 12px;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
             border-radius: 50px; color: var(--text-gold);
         }
 
-        /* --- PROVA SOCIAL (Minimalista & Elegante) --- */
-        .reviews-section {
-            background-color: var(--bg-panel);
-            padding: 100px 0;
-            text-align: center;
+        /* --- COMBOS (NOVO) --- */
+        .combos-section { padding: 80px 0; background: var(--bg-panel); }
+        .cards-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; margin-top: 50px;
         }
+        .combo-card {
+            background: var(--bg-dark); padding: 30px; border-radius: 10px;
+            text-align: center; border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s;
+        }
+        .combo-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .combo-title { font-size: 1.8rem; color: #fff; margin-bottom: 10px; font-family: var(--font-title); }
+        .combo-price { font-size: 2rem; color: var(--accent); font-weight: 700; display: block; margin: 15px 0; }
+        .combo-desc { color: #aaa; font-size: 0.9rem; margin-bottom: 20px; }
 
-        .review-card {
-            max-width: 600px; margin: 0 auto 40px auto;
-            border-left: 3px solid var(--accent);
-            padding-left: 30px; text-align: left;
+        /* --- PROVA SOCIAL --- */
+        .reviews-section { padding: 80px 0; text-align: center; }
+        .stars { color: var(--accent); font-size: 1.2rem; letter-spacing: 5px; margin-bottom: 15px; display: block; }
+        .review-text { font-family: var(--font-title); font-size: 1.5rem; font-style: italic; color: #fff; max-width: 700px; margin: 0 auto; }
+        .review-author { margin-top: 20px; display: block; color: var(--text-gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- FAQ & MAPA --- */
+        .info-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
+            padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.05);
         }
-        .review-text { font-family: var(--font-title); font-size: 1.8rem; font-style: italic; color: #fff; line-height: 1.4; }
-        .review-author { margin-top: 20px; display: block; color: var(--text-gold); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem;}
+        
+        details {
+            background: rgba(255,255,255,0.03); margin-bottom: 10px; border-radius: 5px;
+        }
+        summary { padding: 15px; cursor: pointer; font-weight: 500; list-style: none; display: flex; justify-content: space-between; }
+        summary::after { content: '+'; color: var(--accent); font-size: 1.2rem; }
+        details[open] summary::after { content: '-'; }
+        .faq-ans { padding: 0 15px 15px 15px; color: #aaa; font-size: 0.9rem; line-height: 1.5; }
+
+        .map-frame { width: 100%; height: 100%; min-height: 300px; border-radius: 10px; filter: grayscale(80%) contrast(1.2); border: 0; }
+
+        /* --- FOOTER --- */
+        footer { padding: 40px 0; text-align: center; background: #110b06; color: #666; font-size: 0.85rem; }
 
         /* --- CTA WHATSAPP FLUTUANTE --- */
         .wa-float {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 70px; height: 70px;
-            background: #25D366; border-radius: 50%;
+            position: fixed; bottom: 25px; right: 25px;
+            width: 65px; height: 65px;
+            background: var(--whatsapp); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            z-index: 999; animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 999; transition: transform 0.3s;
         }
+        .wa-float:hover { transform: scale(1.1); }
         .wa-float svg { width: 35px; height: 35px; fill: white; }
+        
+        .wa-badge {
+            position: absolute; top: -5px; right: -5px;
+            background: red; color: white; font-size: 11px; font-weight: bold;
+            width: 22px; height: 22px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            animation: bounce 2s infinite;
+        }
 
         /* --- ANIMATIONS --- */
-        @keyframes zoomSlow { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
+        @keyframes zoomSlow { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* Mobile */
@@ -198,25 +242,29 @@
             .hero h1 { font-size: 2.5rem; }
             .menu-item, .menu-item.reverse { grid-template-columns: 1fr; text-align: center; gap: 30px; }
             .menu-item.reverse .item-text { order: 2; text-align: center; }
-            .item-img { height: 350px; order: 1; }
-            .menu-item.reverse .ingredient-list { justify-content: center; }
+            .item-img { height: 300px; order: 1; }
+            .menu-item.reverse .tag-container { justify-content: center; }
+            .info-grid { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
 
     <div class="texture-overlay"></div>
 
+    <div class="top-bar">
+        🔥 Aberto Agora • Entregas em até 40 min
+    </div>
+
     <header>
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         
         <div class="container hero-content reveal">
-            <span style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.9rem; color: var(--accent);">Madrid • Desde 1998</span>
-            <h1>Mais que um doce,<br>um ritual.</h1>
-            <p>Chocolate belga denso, churros dourados e crocantes. A experiência autêntica que aquece a alma.</p>
-            <a href="https://wa.me/34000000000?text=Quero%20reservar%20uma%20mesa" class="btn-gold">Reservar Experiência</a>
+            <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: var(--accent);">Desde 1998 em Madrid</span>
+            <h1>Crocante por Fora,<br>Nuvem por Dentro.</h1>
+            <p>O autêntico churros espanhol com chocolate belga denso. Peça agora e receba quentinho.</p>
+            <a href="#" onclick="openWhatsapp('Hero')" class="btn-gold">Pedir no WhatsApp</a>
         </div>
 
         <svg class="melt-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -227,76 +275,146 @@
     <section class="menu-section">
         <div class="container">
             
-            <div class="text-center reveal" style="margin-bottom: 80px;">
-                <h2 style="font-size: 2.5rem; color: var(--text-gold);">Nossas Tentações</h2>
-                <p style="color: #888; margin-top: 10px;">Feito à mão, frito na hora.</p>
+            <div class="text-center reveal" style="margin-bottom: 60px;">
+                <h2 style="font-size: 2.5rem; color: var(--text-gold);">Clássicos Irresistíveis</h2>
+                <p style="color: #888; margin-top: 10px;">Feito à mão, frito na hora do seu pedido.</p>
             </div>
 
             <div class="menu-item reveal">
                 <div class="item-img">
-                    <img src="https://images.unsplash.com/photo-1624300626442-850f61204647?q=80&w=800&auto=format&fit=crop" alt="Churros">
-                    <div class="floating-badge">€ 5,50</div>
+                    <img src="churros.jpg" alt="Churros">
+                    <div class="floating-price">€ 5,50</div>
                 </div>
                 <div class="item-text">
                     <h3>Churros Clássicos</h3>
-                    <p>Nossa receita secreta de massa leve, frita em azeite de oliva até atingir o dourado perfeito. Crocante por fora, macio como nuvem por dentro.</p>
-                    <div class="ingredient-list">
-                        <span class="tag">Açúcar e Canela</span>
+                    <p>Nossa receita secreta de massa leve, frita em azeite de oliva até atingir o dourado perfeito. Acompanha açúcar e canela polvilhados.</p>
+                    <div class="tag-container">
+                        <span class="tag">Porção 6 un</span>
                         <span class="tag">Fritos na hora</span>
-                        <span class="tag">Sem Óleo de Palma</span>
+                        <span class="tag">Vegano</span>
                     </div>
-                    <a href="https://wa.me/34000000000" style="color: var(--accent); font-weight: 600; border-bottom: 1px solid var(--accent);">Pedir no WhatsApp →</a>
+                    <a href="#" onclick="openWhatsapp('Churros')" class="btn-outline">Adicionar ao Pedido</a>
                 </div>
             </div>
 
             <div class="menu-item reverse reveal">
                 <div class="item-img">
                     <img src="https://images.unsplash.com/photo-1542843137-8791a6904d14?q=80&w=800&auto=format&fit=crop" alt="Chocolate Quente">
-                    <div class="floating-badge">€ 4,00</div>
+                    <div class="floating-price">€ 4,00</div>
                 </div>
                 <div class="item-text">
                     <h3>Chocolate Suizo</h3>
-                    <p>Esqueça o achocolatado. Aqui servimos chocolate de verdade. Denso, escuro e brilhante, feito com blend de cacau 70% e um toque de creme.</p>
-                    <div class="ingredient-list">
+                    <p>Esqueça o achocolatado. Aqui servimos chocolate de verdade. Denso, escuro e brilhante, feito com blend de cacau 70%.</p>
+                    <div class="tag-container">
                         <span class="tag">Cacau 70%</span>
                         <span class="tag">Textura Densa</span>
-                        <span class="tag">Chantilly Artesanal</span>
+                        <span class="tag">Quentinho</span>
                     </div>
-                    <a href="https://wa.me/34000000000" style="color: var(--accent); font-weight: 600; border-bottom: 1px solid var(--accent);">Pedir no WhatsApp →</a>
+                    <a href="#" onclick="openWhatsapp('Chocolate')" class="btn-outline">Adicionar ao Pedido</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section class="reviews-section">
-        <div class="container reveal">
-            <div class="review-card">
-                <p class="review-text">"Não é apenas comida, é uma abraço em forma de doce. O melhor chocolate que já provei em toda a Espanha."</p>
-                <span class="review-author">Maria Gonzalez • Guia Michelin (Review)</span>
+    <section class="combos-section reveal">
+        <div class="container">
+            <div class="text-center">
+                <h2 style="font-size: 2.5rem; color: #fff;">Combos & Packs</h2>
+                <p style="color: var(--accent);">Economize pedindo para compartilhar</p>
             </div>
-            
-            <div style="margin-top: 50px;">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop" style="height: 300px; border-radius: 12px; opacity: 0.7; filter: grayscale(30%); object-position: center;" alt="Ambiente">
-                <p style="margin-top: 15px; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;">Ambiente Acolhedor no Centro de Madrid</p>
+
+            <div class="cards-grid">
+                <div class="combo-card">
+                    <h4 class="combo-title">Pack Individual</h4>
+                    <span class="combo-price">€ 8,50</span>
+                    <p class="combo-desc">1 Porção de Churros (6un) <br>+ 1 Chocolate Suizo Pequeno</p>
+                    <a href="#" onclick="openWhatsapp('Combo Individual')" class="btn-gold" style="font-size: 0.8rem; padding: 12px 30px;">Pedir Agora</a>
+                </div>
+                <div class="combo-card" style="border-color: var(--accent);">
+                    <h4 class="combo-title" style="color: var(--accent);">Combo Casal ❤️</h4>
+                    <span class="combo-price">€ 15,00</span>
+                    <p class="combo-desc">2 Porções de Churros <br>+ 2 Chocolates Suizos <br>+ Chantilly Extra</p>
+                    <a href="#" onclick="openWhatsapp('Combo Casal')" class="btn-gold" style="font-size: 0.8rem; padding: 12px 30px;">Pedir Agora</a>
+                </div>
+                <div class="combo-card">
+                    <h4 class="combo-title">Pack Família</h4>
+                    <span class="combo-price">€ 28,00</span>
+                    <p class="combo-desc">4 Porções de Churros <br>+ 1 Litro de Chocolate <br>+ Toppings</p>
+                    <a href="#" onclick="openWhatsapp('Combo Familia')" class="btn-gold" style="font-size: 0.8rem; padding: 12px 30px;">Pedir Agora</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 50px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
+    <section class="reviews-section reveal">
+        <div class="container">
+            <span class="stars">⭐⭐⭐⭐⭐</span>
+            <p class="review-text">"Não é apenas comida, é um abraço em forma de doce. O melhor chocolate que já provei em toda a Espanha."</p>
+            <span class="review-author">Maria Gonzalez • Cliente Fiel</span>
+        </div>
+    </section>
+
+    <section class="container info-grid reveal">
+        <div>
+            <h3 style="color: #fff; margin-bottom: 20px;">Dúvidas Frequentes</h3>
+            <details>
+                <summary>Fazem entrega?</summary>
+                <div class="faq-ans">Sim! Entregamos em um raio de 3km ou via Apps de entrega.</div>
+            </details>
+            <details>
+                <summary>Aceitam cartão?</summary>
+                <div class="faq-ans">Aceitamos todos os cartões de crédito, débito e dinheiro.</div>
+            </details>
+            <details>
+                <summary>Tem opção vegana?</summary>
+                <div class="faq-ans">Sim! Nossos churros são veganos. Temos chocolate com leite vegetal.</div>
+            </details>
+            <details>
+                <summary>Qual horário de funcionamento?</summary>
+                <div class="faq-ans">Todos os dias das 08h às 22h.</div>
+            </details>
+        </div>
+        
+        <div>
+            <h3 style="color: #fff; margin-bottom: 20px;">Onde Estamos</h3>
+            <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.338734990928!2d-3.706049223594639!3d40.42352825522533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287d2da253d7%3A0x138d212a76251788!2sMadrid%2C%20Spain!5e0!3m2!1sen!2sbr!4v1700000000000!5m2!1sen!2sbr" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <footer style="border-top: 1px solid rgba(255,255,255,0.05);">
         <div class="container">
             <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 10px;">ChocoMadrid</h3>
-            <p style="color: #666; font-size: 0.9rem;">Calle Mayor, 12 - Madrid, España</p>
-            <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">&copy; 2024. Todos os direitos reservados.</p>
+            <p>Calle Mayor, 12 - Madrid, España</p>
+            <p style="margin-top: 5px;">Aberto todos os dias: 08h - 22h</p>
+            <br>
+            <p>&copy; 2024 ChocoMadrid. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/34000000000" class="wa-float" aria-label="Fale conosco no WhatsApp">
+    <a href="#" onclick="openWhatsapp('Botao Flutuante')" class="wa-float" aria-label="Fale conosco no WhatsApp">
+        <div class="wa-badge">1</div>
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382C17.112 14.382 16.752 14.248 16.479 13.973C15.933 13.427 15.933 12.539 16.479 11.993C17.025 11.447 17.913 11.447 18.459 11.993C19.005 12.539 19.005 13.427 18.459 13.973C18.186 14.248 17.826 14.382 17.472 14.382Z"/><path d="M5.957 14.382C5.597 14.382 5.237 14.248 4.964 13.973C4.418 13.427 4.418 12.539 4.964 11.993C5.51 11.447 6.398 11.447 6.944 11.993C7.49 12.539 7.49 13.427 6.944 13.973C6.671 14.248 6.311 14.382 5.957 14.382Z"/><path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20Z"/><path d="M12 18C8.691 18 6 15.309 6 12H8C8 14.206 9.794 16 12 16C14.206 16 16 14.206 16 12H18C18 15.309 15.309 18 12 18Z"/></svg>
     </a>
 
     <script>
-        // Animação de Scroll (Intersection Observer)
+        // Função de WhatsApp Dinâmico
+        function openWhatsapp(item) {
+            // SUBSTITUA PELO NÚMERO REAL
+            const phone = "34000000000"; 
+            let msg = "";
+
+            if(item === 'Churros') msg = "Olá! Quero pedir os Churros Clássicos.";
+            else if(item === 'Chocolate') msg = "Olá! Quero pedir o Chocolate Suizo.";
+            else if(item === 'Combo Casal') msg = "Olá! Quero o Combo Casal ❤️.";
+            else if(item === 'Hero') msg = "Olá! Vi o site e quero fazer um pedido.";
+            else msg = "Olá! Gostaria de ver o cardápio.";
+
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        }
+
+        // Animação de Scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting){
